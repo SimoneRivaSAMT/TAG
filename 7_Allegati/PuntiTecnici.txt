@@ -1,0 +1,13 @@
+159 (Analisi del problema)  
+
+125 (Organizzazione del programma)  
+
+121 (Ergonomia del software)  
+
+139 (Realizzazione delle funzioni)  
+
+166 (Stile di codifica; Leggibilità del codice)  
+
+164 (Codifica: Trattamento degli errori)  
+
+135 (Documentazione DB, tabelle, ecc…)  
