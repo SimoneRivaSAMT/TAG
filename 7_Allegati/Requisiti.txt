@@ -5,101 +5,67 @@ _______________________
    Priorita: 1
    Note: L'utente puo' usare dei comandi di tastiera o joystick per muovere il personaggio.
    Sotto requisiti:
-    01: Conoscenza base di Unity.
+    01: Mappatura tastiera movimento.
 
  - Nome: Interfaccia Grafica
    Priorita: 1
    Note: L'utente puo' navigare attraverso l'interfaccia di gioco usando tastiera o joystick.
    Sotto requisiti:
-    01: Conoscenza base di Unity.
+   01: Interfaccia UI per gestire tutte le impostazioni (es: audio, grafica, account, ...).
 
  - Nome: Ambiente Partita
    Priorita: 1
-   Note: Mappa di gioco.
+   Note: Deve essere presente una mappa di gioco.
    Sotto requisiti: 
-    01: Conoscenza base di Unity.
-    02: Conoscenza base di Blender.
 
- - Nome: Grafica Sito Web
+ - Nome: Sito Web
    Priorita: 1
-   Note: Grafica HTML, CSS e JavaScript del sito esterno.
+   Note: Deve essere presente un sito web.
    Sotto requisiti:
-    01: Conoscenza base di HTML, CSS e JavaScript.
 
  - Nome: Interazioni Giocatore
    Priorita: 1
    Note: L'utente puo' mirare e puntare un laser ed eventualmente parare i laser degli altri usando i comandi di tastiera o joystick.
    Sotto requisiti:
-    01: L'utente riesce a muovere il giocatore.
-
- - Nome: Impostazioni Interfaccia
-   Priorita: 1
-   Note: Interfaccia UI per gestire tutte le impostazioni (es: audio, grafica, account, ...).
-   Sotto requisiti:
-    01: L'interfaccia grafica è utlizzabile.
 
  - Nome: Ostacoli Casuali
    Priorita: 1
-   Note: I muri si generano in maniera casuale all'inizio di ogni partita (algoritmo di Manhattan Mapper).
+   Note: I muri si generano in maniera casuale all'inizio di ogni partita usando l'algoritmo di Manhattan Mapper.
    Sotto requisiti:
-    01: Ambiente di gioco completo.
-	02: Conoscenza algoritmo Manhattan Mapper.
-	
+   	
  - Nome: HUD
    Priorita: 1
    Note: L'Heads-Up Display (HUD) mostrerà varie informazioni durante la partita.
    Sotto requisiti:
-    01: Giocatore utilizzabile.
+    01: HP (Health Points).
+    02: Tempo rimasto di partita.
 	
- - Nome: IA Nemico
+ - Nome: AI Nemico
    Priorita: 1
-   Note: Un'IA che si comporta come un giocatore.
+   Note: Un'AI che si comporta come un giocatore.
    Sotto requisiti:
-    01: Giocatore funzionante.
-	02: Ambiente di gioco.
 
  - Nome: Database
    Priorita: 1
-   Note: Il database conterrà tutte le tabelle utili pero lo storage di dati e per il multiplayer.
+   Note: Il database conterrà tutte le tabelle utili per lo storage di dati e per il multiplayer.
    Sotto requisiti:
-    01: Conoscenza base di MySQL.
-	
- - Nome: Leaderboard Globale
-   Priorita: 1
-   Note: Sarà una tabella consultabile dal sito web dove verranno mostrati i migliori giocatori di sempre con il punteggio.
-   Sotto requisiti:
-    01: Database funzionante.
-	02: Sito web online.
-	
- - Nome: Leaderboard della Partita
-   Priorita: 1
-   Note: Questa Leaderboard conterrà i punteggi e i giocatori della partita corrente.
-   Sotto requisiti:
-    01: Giocatore funzionante.
-	02: Ambiente di gioco.
-		
+    01: Tabella Leaderboard Globale: sarà una tabella consultabile dal sito web dove verranno mostrati i migliori giocatori di sempre con il punteggio.
+	02: Tabella Leaderboard della Partita: conterrà i punteggi e i giocatori della partita corrente.
+
  - Nome: Multiplayer
    Priorita: 1
    Note: Il giocatore puo' collegarsi ad una sessione con altri giocatori.
    Sotto requisiti:
-    01: Giocatore funzionante.
-	02: Ambiente di gioco.
-	03: Database in funzione.
 		
  - Nome: Audio
    Priorita: 1
    Note: Musica e Effetti Sonori del gioco.
    Sotto requisiti:
-    01: Giocatore funzionante.
-	02: Ambiente di gioco.
 		
  - Nome: Modelli ed Animazioni
    Priorita: 1
    Note: I modelli ed animazioni dei personaggi.
    Sotto requisiti:
-    01: Giocatore funzionante.
-	02: Ambiente di gioco.
-	03: Conoscenza base di Blender.
 	
 __________
           \
@@ -110,11 +76,8 @@ __________/
    Priorita: 2
    Note: La grafica del gioco e' da cartone animata però in 3D.
    Sotto requisiti:
-    01: Il gioco finito e funzionante.
 
  - Nome: Video Clip
    Priorita: 3
    Note: Le parite vengono registrate e mandati al sito web per essere visualizzati.
    Sotto requisiti:
-    01: Il gioco finito e funzionante.
-    01: Il sito web finito e funzionante.
