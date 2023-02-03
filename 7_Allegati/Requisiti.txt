@@ -5,13 +5,12 @@ _______________________
    Priorita: 1
    Note: L'utente puo' usare dei comandi di tastiera o joystick per muovere il personaggio.
    Sotto requisiti:
-    01: Mappatura tastiera movimento.
 
  - Nome: Interfaccia Grafica
    Priorita: 1
    Note: L'utente puo' navigare attraverso l'interfaccia di gioco usando tastiera o joystick.
    Sotto requisiti:
-   01: Interfaccia UI per gestire tutte le impostazioni (es: audio, grafica, account, ...).
+   01: Interfaccia UI per gestire tutte le impostazioni (es: audio, grafica, account, ...).-------------------
 
  - Nome: Ambiente Partita
    Priorita: 1
@@ -22,6 +21,7 @@ _______________________
    Priorita: 1
    Note: Deve essere presente un sito web.
    Sotto requisiti:
+   01: l'utente crea un account
 
  - Nome: Interazioni Giocatore
    Priorita: 1
@@ -32,19 +32,19 @@ _______________________
    Priorita: 1
    Note: I muri si generano in maniera casuale all'inizio di ogni partita usando l'algoritmo di Manhattan Mapper.
    Sotto requisiti:
-   	
+
  - Nome: HUD
    Priorita: 1
    Note: L'Heads-Up Display (HUD) mostrerà varie informazioni durante la partita.
    Sotto requisiti:
-    01: HP (Health Points).
-    02: Tempo rimasto di partita.
-	
+    01: Tempo rimasto di partita.
+    02: Punteggio
+
  - Nome: AI Nemico
    Priorita: 1
    Note: Un'AI che si comporta come un giocatore.
    Sotto requisiti:
-
+-------------------da fare--------------------
  - Nome: Database
    Priorita: 1
    Note: Il database conterrà tutte le tabelle utili per lo storage di dati e per il multiplayer.
