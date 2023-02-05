@@ -33,6 +33,7 @@ public class NetworkCommandLine : MonoBehaviour
                     textIP.text += " (SRV)";
                     break;
                 case "host":
+                    textIP.text += " (HOST)";
                     netManager.StartHost();
                     break;
                 case "client":
