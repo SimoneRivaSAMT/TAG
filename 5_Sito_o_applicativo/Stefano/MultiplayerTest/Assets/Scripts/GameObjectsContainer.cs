@@ -12,7 +12,6 @@ public class GameObjectsContainer : MonoBehaviour
         {
             case 1:
                 return cube1;
-                break;
         }
         return null;
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 247213682117941535}
   - component: {fileID: 247213682117941534}
   - component: {fileID: 247213682117941533}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247213682117941521}
   m_LocalRotation: {x: 0.074593, y: -0, z: -0, w: 0.9972141}
-  m_LocalPosition: {x: 0, y: 0.78, z: -0.029999971}
+  m_LocalPosition: {x: 0, y: 0.78, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -132,9 +132,9 @@ GameObject:
   - component: {fileID: 1186679719414424563}
   - component: {fileID: -2733865182415644245}
   - component: {fileID: 6548035997920373378}
-  - component: {fileID: -9157045212109898360}
   - component: {fileID: 9050064366541650325}
-  m_Layer: 0
+  - component: {fileID: 27523963321256098}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -253,18 +253,6 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &-9157045212109898360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5309704315683897071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbaf0273e2458774c8a8e20fe78d887f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &9050064366541650325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,3 +279,18 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
+--- !u!114 &27523963321256098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5309704315683897071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbaf0273e2458774c8a8e20fe78d887f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
