@@ -10,7 +10,7 @@ _______________________
    Priorita: 1
    Note: L'utente puo' navigare attraverso l'interfaccia di gioco usando tastiera o joystick.
    Sotto requisiti:
-   01: Interfaccia UI per gestire tutte le impostazioni (es: audio, grafica, account, ...).-------------------
+   01: Interfaccia UI per gestire tutte le impostazioni (es: audio, grafica, account, ...).
 
  - Nome: Ambiente Partita
    Priorita: 1
@@ -44,13 +44,13 @@ _______________________
    Priorita: 1
    Note: Un'AI che si comporta come un giocatore.
    Sotto requisiti:
--------------------da fare--------------------
+
  - Nome: Database
    Priorita: 1
-   Note: Il database conterrà tutte le tabelle utili per lo storage di dati e per il multiplayer.
+   Note: Il database contiene tutte le tabelle utili per lo storage di dati e per il multiplayer.
    Sotto requisiti:
-    01: Tabella Leaderboard Globale: sarà una tabella consultabile dal sito web dove verranno mostrati i migliori giocatori di sempre con il punteggio.
-	02: Tabella Leaderboard della Partita: conterrà i punteggi e i giocatori della partita corrente.
+    01: Tabella Leaderboard Globale: è una tabella consultabile dal sito web dove vengono mostrati i migliori giocatori di sempre con il punteggio.
+	02: Tabella Leaderboard della Partita: contiene i punteggi e i giocatori della partita corrente.
 
  - Nome: Multiplayer
    Priorita: 1
@@ -74,10 +74,10 @@ __________/
 
  - Nome: Algoritmo di Cell-Shading
    Priorita: 2
-   Note: La grafica del gioco e' da cartone animata però in 3D.
+   Note: La grafica del gioco e' da cartone animato però in 3D.
    Sotto requisiti:
 
  - Nome: Video Clip
    Priorita: 3
-   Note: Le parite vengono registrate e mandati al sito web per essere visualizzati.
+   Note: Le parite vengono registrate e mandate al sito web per essere visualizzati.
    Sotto requisiti:
