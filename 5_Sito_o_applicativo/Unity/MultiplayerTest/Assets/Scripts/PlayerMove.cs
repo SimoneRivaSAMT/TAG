@@ -5,6 +5,20 @@ using Unity.Netcode;
 
 public class PlayerMove : NetworkBehaviour
 {
+    private Camera _camera;
+    private AudioListener _audioListener;
+
+    private void Start()
+    {
+        _camera = GetComponentInChildren<Camera>();
+        _audioListener = GetComponentInChildren<AudioListener>();
+        if (!IsOwner)
+        {
+            _audioListener.enabled = false;
+            _camera.enabled = false;
+        }
+    }
+
     private void Update()
     {
         if (!IsOwner) return;

@@ -22,8 +22,10 @@ namespace Assets.GameManagement
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                Vector3 pos = new(spawn1_loc.position.x, spawn1_loc.position.y, spawn1_loc.position.z);
-                spawnObject.SpawnGameObject(spawn1, pos, Quaternion.identity);
+                spawnObject.SpawnGameObjectServerRpc(1, spawn1_loc.position.x,
+                    spawn1_loc.position.y,
+                    spawn1_loc.position.z);
+
             }
         }
     }

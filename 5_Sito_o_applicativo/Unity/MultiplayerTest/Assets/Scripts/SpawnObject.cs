@@ -6,11 +6,20 @@ using System;
 
 public class SpawnObject : NetworkBehaviour
 {
-    public void SpawnGameObject(GameObject prefab, Vector3 location, Quaternion rotation)
+    private GameObjectsContainer gameObjectsContainer;
+    private void Start()
     {
-        if (!IsHost)
-            return;
-        GameObject objToSpawn = Instantiate(prefab, location, rotation);
+        gameObjectsContainer = FindObjectOfType<GameObjectsContainer>();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void SpawnGameObjectServerRpc(int gameObjectId, float posX, float posY, float posZ)
+    {
+        Vector3 pos = new Vector3(posX, posY, posZ);
+
+        GameObject objToSpawn = Instantiate(gameObjectsContainer.GetObject(gameObjectId),
+            pos,
+            Quaternion.identity);
         objToSpawn.GetComponent<NetworkObject>().Spawn();
     }
 }
