@@ -9,6 +9,7 @@ public class PlayerManager : NetworkBehaviour
     private Camera _camera;
     private AudioListener _audioListener;
     private PlayersManagement _playersManagement;
+    private bool _canQuit = false;
 
     public LayerMask layerMask;
 
@@ -51,7 +52,7 @@ public class PlayerManager : NetworkBehaviour
             if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000, layerMask))
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-                Debug.Log("Hitted " + hit.collider.GetInstanceID());
+                Debug.Log("Hitted " + hit.collider.GetComponent<NetworkObject>().NetworkObjectId);
             }
             else
             {
@@ -60,13 +61,14 @@ public class PlayerManager : NetworkBehaviour
             }
         }
     }
-    private void Disconnect(int instanceId)
+    private void Disconnect(ulong instanceId)
     {
+        _playersManagement.ClientDisconnectedServerRpc(instanceId);
     }
 
-    private void OnApplicationQuit()
+    public override void OnNetworkDespawn()
     {
-        Disconnect(GetComponent<Collider>().gameObject.GetInstanceID());
+        Disconnect(GetComponent<NetworkObject>().NetworkObjectId);
+        base.OnNetworkDespawn();
     }
-
 }

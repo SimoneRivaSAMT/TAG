@@ -32,7 +32,7 @@ public class PlayersManagement : NetworkBehaviour
         try
         {
             players.Add(clientId, clientObj);
-            clientsConnected.Value++;
+            UpdateDictCount();
             Debug.Log("Client connected, id: " + clientId);
         }
         catch { }
@@ -41,8 +41,9 @@ public class PlayersManagement : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void ClientDisconnectedServerRpc(ulong clientId)
     {
-        clientsConnected.Value--;
+        Debug.Log("Client disconnected, id: " + clientId);
         players.Remove(clientId);
+        UpdateDictCount();
     }
 
     public int GetNumberOfClients()
@@ -53,5 +54,10 @@ public class PlayersManagement : NetworkBehaviour
     public IDictionary<ulong, GameObject> GetPlayers()
     {
         return players;
+    }
+
+    private void UpdateDictCount()
+    {
+        clientsConnected.Value = players.Count;
     }
 }
