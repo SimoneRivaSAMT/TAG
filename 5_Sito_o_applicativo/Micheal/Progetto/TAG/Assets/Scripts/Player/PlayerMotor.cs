@@ -11,7 +11,7 @@ public class PlayerMotor : MonoBehaviour
 
     public float speed = 5f;
     public float gravity = -9.8f;
-    public float jumpHeight = 3f;
+    public float jumpHeight = 1.5f;
     public float crouchTimer = 0.5f;
     
     
