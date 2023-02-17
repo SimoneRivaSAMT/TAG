@@ -80,6 +80,24 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TestHealth"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d6a7fd9-1e3e-49f1-a459-33d0d2a7dc2a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TestHealthGain"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8a57e69-5d3c-46ee-a2ad-520129f9de78"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -300,6 +318,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9780c19b-3a82-4aee-8d33-4aa124d9ef5b"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TestHealth"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""535217da-bd17-41e0-9454-5c9d3852472e"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TestHealthGain"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -832,6 +872,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_OnFoot_Crouch = m_OnFoot.FindAction("Crouch", throwIfNotFound: true);
         m_OnFoot_Sprint = m_OnFoot.FindAction("Sprint", throwIfNotFound: true);
         m_OnFoot_Interact = m_OnFoot.FindAction("Interact", throwIfNotFound: true);
+        m_OnFoot_TestHealth = m_OnFoot.FindAction("TestHealth", throwIfNotFound: true);
+        m_OnFoot_TestHealthGain = m_OnFoot.FindAction("TestHealthGain", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -909,6 +951,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Crouch;
     private readonly InputAction m_OnFoot_Sprint;
     private readonly InputAction m_OnFoot_Interact;
+    private readonly InputAction m_OnFoot_TestHealth;
+    private readonly InputAction m_OnFoot_TestHealthGain;
     public struct OnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -919,6 +963,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_OnFoot_Crouch;
         public InputAction @Sprint => m_Wrapper.m_OnFoot_Sprint;
         public InputAction @Interact => m_Wrapper.m_OnFoot_Interact;
+        public InputAction @TestHealth => m_Wrapper.m_OnFoot_TestHealth;
+        public InputAction @TestHealthGain => m_Wrapper.m_OnFoot_TestHealthGain;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -946,6 +992,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnInteract;
+                @TestHealth.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnTestHealth;
+                @TestHealth.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnTestHealth;
+                @TestHealth.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnTestHealth;
+                @TestHealthGain.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnTestHealthGain;
+                @TestHealthGain.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnTestHealthGain;
+                @TestHealthGain.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnTestHealthGain;
             }
             m_Wrapper.m_OnFootActionsCallbackInterface = instance;
             if (instance != null)
@@ -968,6 +1020,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @TestHealth.started += instance.OnTestHealth;
+                @TestHealth.performed += instance.OnTestHealth;
+                @TestHealth.canceled += instance.OnTestHealth;
+                @TestHealthGain.started += instance.OnTestHealthGain;
+                @TestHealthGain.performed += instance.OnTestHealthGain;
+                @TestHealthGain.canceled += instance.OnTestHealthGain;
             }
         }
     }
@@ -1085,6 +1143,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnTestHealth(InputAction.CallbackContext context);
+        void OnTestHealthGain(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
