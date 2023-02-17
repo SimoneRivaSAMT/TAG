@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
-using System;
 
-public class PlayerManager : NetworkBehaviour
+public class NetworkPlayer : NetworkBehaviour
 {
     private Camera _camera;
     private AudioListener _audioListener;
@@ -30,26 +29,15 @@ public class PlayerManager : NetworkBehaviour
     private void Update()
     {
         if (!IsOwner) return;
-        HandleMovement();
-        HandleShooting();
     }
 
-    private void HandleMovement()
-    {
-        Vector3 moveDir = new Vector3(0, 0, 0);
-        if (Input.GetKey(KeyCode.W)) moveDir.z = +1f;
-        if (Input.GetKey(KeyCode.S)) moveDir.z = -1f;
-        if (Input.GetKey(KeyCode.A)) moveDir.x = -1f;
-        if (Input.GetKey(KeyCode.D)) moveDir.x = +1f;
-        float speed = 3f;
-        transform.position += moveDir * speed * Time.deltaTime;
-    }
+    #region to-implement-later
     private void HandleShooting()
     {
         RaycastHit hit;
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000, layerMask))
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000, layerMask))
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                 Debug.Log("Hitted " + hit.collider.GetComponent<NetworkObject>().NetworkObjectId);
@@ -61,6 +49,7 @@ public class PlayerManager : NetworkBehaviour
             }
         }
     }
+    #endregion
     private void Disconnect(ulong instanceId)
     {
         _playersManagement.ClientDisconnectedServerRpc(instanceId);
