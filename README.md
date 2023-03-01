@@ -14,3 +14,5 @@
 - [ ] AI
 - [ ] Main map
 - [ ] Main game
+---
+*Developed by Stefano Ceschi, Simone Riva and Micheal Dobeson*
