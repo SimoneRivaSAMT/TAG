@@ -12,34 +12,40 @@ public class CreditsManager : MonoBehaviour
     [Header("Video")]
     public VideoPlayer videoPlayer;
     public Animator transitionAnimator;
+    public Animator camAnimator;
     [Header("Misc")]
     public float videoStartDelay = 0f;
     public GameObject[] childrens;
     public int timeToReturnInPreviusScene = 30;
-
-    private float deltaTime = 0f;
-    private bool isPlaying = false;
+    public float cameraAndVideoStartDelay = 0;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         audioSource.Play();
+        StartCoroutine(WaitToStart());
+    }
+
+    private void StartCamera()
+    {
+        camAnimator.SetTrigger("start");
         StartCoroutine(ReturnBack());
     }
 
-    private void Update()
+    private void StartVideo()
     {
-        if(!isPlaying)
-            deltaTime += Time.deltaTime;
-        if(deltaTime >= videoStartDelay && !isPlaying)
-        {  
-            videoPlayer.Play();
-            childrens[0].SetActive(false);
-            childrens[1].SetActive(true);
-            isPlaying = true;
-            deltaTime = 0f;
-        }
+        videoPlayer.Play();
+        childrens[0].SetActive(false);
+        childrens[1].SetActive(true);
+    }
+
+    private IEnumerator WaitToStart()
+    {
+        yield return new WaitForSeconds(cameraAndVideoStartDelay);
+        StartCamera();
+        yield return new WaitForSeconds(videoStartDelay);
+        StartVideo();
     }
 
     private IEnumerator ReturnBack()
