@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
+    private InputManager inputManager;
     private Vector3 playerVelocity;
     private bool isGrounded;
-    private bool lerpCrouch, crouching, sprinting;
+    private bool lerpCrouch, crouching;
 
     public float speed = 5f;
     public float gravity = -9.8f;
@@ -20,6 +21,8 @@ public class PlayerMotor : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        inputManager = GetComponent<InputManager>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -44,6 +47,18 @@ public class PlayerMotor : MonoBehaviour
                 crouchTimer = 0f;
             }
         }
+
+        // For Sprinting
+        if (inputManager.onFoot.Sprint.IsPressed() && !crouching)
+        {
+            speed = 8;
+        }
+        else
+        {
+            speed = 5;
+            if (crouching)
+                speed = 3;
+        }
     }
 
     // Receive the inputs for our InputManager.cs and apply them to our character controller
@@ -59,7 +74,6 @@ public class PlayerMotor : MonoBehaviour
             playerVelocity.y = -2f;
         }
         controller.Move(playerVelocity * Time.deltaTime);
-        //Debug.Log(playerVelocity.y);
     }
 
     public void Jump()
@@ -75,14 +89,5 @@ public class PlayerMotor : MonoBehaviour
         crouching = !crouching;
         crouchTimer = 0;
         lerpCrouch = true;
-    }
-
-    public void Sprint()
-    {
-        sprinting = !sprinting;
-        if (sprinting)
-            speed = 8;
-        else
-            speed = 5;
     }
 }

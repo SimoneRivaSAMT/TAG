@@ -71,33 +71,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""c87cc282-7337-4432-a613-c796f7787921"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TestHealth"",
-                    ""type"": ""Button"",
-                    ""id"": ""6d6a7fd9-1e3e-49f1-a459-33d0d2a7dc2a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TestHealthGain"",
-                    ""type"": ""Button"",
-                    ""id"": ""c8a57e69-5d3c-46ee-a2ad-520129f9de78"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -296,50 +269,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8e373486-ca7f-4eda-b16e-563baf2985ab"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c3fbd53c-3395-4af6-a668-3fc43002135c"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9780c19b-3a82-4aee-8d33-4aa124d9ef5b"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TestHealth"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""535217da-bd17-41e0-9454-5c9d3852472e"",
-                    ""path"": ""<Keyboard>/l"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TestHealthGain"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -860,6 +789,138 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""OnAction"",
+            ""id"": ""80d8dff7-d85e-4588-93bf-a9eba9d3203e"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Value"",
+                    ""id"": ""ddc620dd-6782-4a17-9f1c-e66674347d86"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Tag"",
+                    ""type"": ""Button"",
+                    ""id"": ""a847484f-1540-4692-bf54-75482a85b65c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""2515980e-f802-41b6-9ef8-6316f30c714d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""590c69ee-ce3d-4e8d-8e76-d6c3b05f848e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b03d5f23-d7e5-4af9-a92f-3e53f08b159e"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2e656d3-9ba6-4491-9558-d2305e72d0a5"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c02a1b57-5972-452e-8fc3-a8ac7ac7e9c4"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""458ddacb-bbf6-47f8-b2b7-050af6687712"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a7706dc-b79e-4a45-a1b0-622c3002bfd6"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66779ab3-7284-472f-98f2-3f4bcf818efe"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9af57542-0b16-4dc8-910f-dcf0076b7e02"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6685329-6c5a-40ba-9382-9029924af7cf"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -871,9 +932,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_OnFoot_Look = m_OnFoot.FindAction("Look", throwIfNotFound: true);
         m_OnFoot_Crouch = m_OnFoot.FindAction("Crouch", throwIfNotFound: true);
         m_OnFoot_Sprint = m_OnFoot.FindAction("Sprint", throwIfNotFound: true);
-        m_OnFoot_Interact = m_OnFoot.FindAction("Interact", throwIfNotFound: true);
-        m_OnFoot_TestHealth = m_OnFoot.FindAction("TestHealth", throwIfNotFound: true);
-        m_OnFoot_TestHealthGain = m_OnFoot.FindAction("TestHealthGain", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -886,6 +944,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // OnAction
+        m_OnAction = asset.FindActionMap("OnAction", throwIfNotFound: true);
+        m_OnAction_Interact = m_OnAction.FindAction("Interact", throwIfNotFound: true);
+        m_OnAction_Tag = m_OnAction.FindAction("Tag", throwIfNotFound: true);
+        m_OnAction_Aim = m_OnAction.FindAction("Aim", throwIfNotFound: true);
+        m_OnAction_Reload = m_OnAction.FindAction("Reload", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -950,9 +1014,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Look;
     private readonly InputAction m_OnFoot_Crouch;
     private readonly InputAction m_OnFoot_Sprint;
-    private readonly InputAction m_OnFoot_Interact;
-    private readonly InputAction m_OnFoot_TestHealth;
-    private readonly InputAction m_OnFoot_TestHealthGain;
     public struct OnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -962,9 +1023,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_OnFoot_Look;
         public InputAction @Crouch => m_Wrapper.m_OnFoot_Crouch;
         public InputAction @Sprint => m_Wrapper.m_OnFoot_Sprint;
-        public InputAction @Interact => m_Wrapper.m_OnFoot_Interact;
-        public InputAction @TestHealth => m_Wrapper.m_OnFoot_TestHealth;
-        public InputAction @TestHealthGain => m_Wrapper.m_OnFoot_TestHealthGain;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -989,15 +1047,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnSprint;
-                @Interact.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnInteract;
-                @TestHealth.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnTestHealth;
-                @TestHealth.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnTestHealth;
-                @TestHealth.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnTestHealth;
-                @TestHealthGain.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnTestHealthGain;
-                @TestHealthGain.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnTestHealthGain;
-                @TestHealthGain.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnTestHealthGain;
             }
             m_Wrapper.m_OnFootActionsCallbackInterface = instance;
             if (instance != null)
@@ -1017,15 +1066,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
-                @TestHealth.started += instance.OnTestHealth;
-                @TestHealth.performed += instance.OnTestHealth;
-                @TestHealth.canceled += instance.OnTestHealth;
-                @TestHealthGain.started += instance.OnTestHealthGain;
-                @TestHealthGain.performed += instance.OnTestHealthGain;
-                @TestHealthGain.canceled += instance.OnTestHealthGain;
             }
         }
     }
@@ -1135,6 +1175,63 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // OnAction
+    private readonly InputActionMap m_OnAction;
+    private IOnActionActions m_OnActionActionsCallbackInterface;
+    private readonly InputAction m_OnAction_Interact;
+    private readonly InputAction m_OnAction_Tag;
+    private readonly InputAction m_OnAction_Aim;
+    private readonly InputAction m_OnAction_Reload;
+    public struct OnActionActions
+    {
+        private @PlayerInput m_Wrapper;
+        public OnActionActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_OnAction_Interact;
+        public InputAction @Tag => m_Wrapper.m_OnAction_Tag;
+        public InputAction @Aim => m_Wrapper.m_OnAction_Aim;
+        public InputAction @Reload => m_Wrapper.m_OnAction_Reload;
+        public InputActionMap Get() { return m_Wrapper.m_OnAction; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(OnActionActions set) { return set.Get(); }
+        public void SetCallbacks(IOnActionActions instance)
+        {
+            if (m_Wrapper.m_OnActionActionsCallbackInterface != null)
+            {
+                @Interact.started -= m_Wrapper.m_OnActionActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_OnActionActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_OnActionActionsCallbackInterface.OnInteract;
+                @Tag.started -= m_Wrapper.m_OnActionActionsCallbackInterface.OnTag;
+                @Tag.performed -= m_Wrapper.m_OnActionActionsCallbackInterface.OnTag;
+                @Tag.canceled -= m_Wrapper.m_OnActionActionsCallbackInterface.OnTag;
+                @Aim.started -= m_Wrapper.m_OnActionActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_OnActionActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_OnActionActionsCallbackInterface.OnAim;
+                @Reload.started -= m_Wrapper.m_OnActionActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_OnActionActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_OnActionActionsCallbackInterface.OnReload;
+            }
+            m_Wrapper.m_OnActionActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @Tag.started += instance.OnTag;
+                @Tag.performed += instance.OnTag;
+                @Tag.canceled += instance.OnTag;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
+            }
+        }
+    }
+    public OnActionActions @OnAction => new OnActionActions(this);
     public interface IOnFootActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -1142,9 +1239,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
-        void OnTestHealth(InputAction.CallbackContext context);
-        void OnTestHealthGain(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1158,5 +1252,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IOnActionActions
+    {
+        void OnInteract(InputAction.CallbackContext context);
+        void OnTag(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
 }

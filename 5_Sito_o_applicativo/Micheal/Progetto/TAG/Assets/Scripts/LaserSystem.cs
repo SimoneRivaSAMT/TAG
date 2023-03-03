@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LaserSystem : MonoBehaviour
 {
@@ -16,33 +17,47 @@ public class LaserSystem : MonoBehaviour
 
     //References
     public Camera fpsCam;
-    public Transform attackPoint;
+    public GameObject player;
+    //public Transform attackPoint;
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
+    public GameObject laserEffect;
 
     // Graphics
-    //public CamShake camShake;
-    // import brackey's code
+    //public GameObject muzzleFlash, bulletHoleGraphic; //https://assetstore.unity.com/packages/vfx/particles/legacy-particle-pack-73777#publisher
+    public CameraShake camShake;
+    public float camShakeMagnitude, camShakeDuration;
+    public TextMeshProUGUI text;
+
+    // InputManager
+    private InputManager inputManager;
 
     private void Awake()
     {
+        inputManager = player.GetComponent<InputManager>();
         bulletsLeft = magazineSize;
         readyToShoot = true;
+        laserEffect.SetActive(false);
     }
 
     private void Update()
     {
         MyInput();
+
+        // SetText
+        text.SetText(bulletsLeft + " / " + magazineSize);
     }
 
     private void MyInput()
     {
-        if(allowButtonHold)
-            shooting = Input.GetKey(KeyCode.Mouse0);
+        if (allowButtonHold)
+            //shooting = Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.JoystickButton7);
+            shooting = inputManager.onAction.Tag.IsPressed();
         else
-            shooting = Input.GetKeyDown(KeyCode.Mouse1);
+            //shooting = Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.JoystickButton7);
+            shooting = inputManager.onAction.Tag.triggered;
 
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) 
+        if (inputManager.onAction.Reload.triggered && bulletsLeft < magazineSize && !reloading) 
             Reload();
 
         // Shoot 
@@ -73,11 +88,20 @@ public class LaserSystem : MonoBehaviour
         {
             Debug.Log(rayHit.collider.name);
 
-            if (rayHit.collider.CompareTag("Enemy"))
-                Debug.Log("aaaa");
-                //rayHit.collider.GetComponent<ShootingAI>().TakeDamage(damage);
-                //to be done
+            if (rayHit.collider.CompareTag("Enemy") || rayHit.collider.CompareTag("Player"))
+            {
+                Debug.Log("You tagged someone");
+                rayHit.collider.GetComponent<PlayerHealth>().TakeDamage(damage);
+            }
         }
+
+        // ShakeCamera
+        StartCoroutine(camShake.Shake(camShakeMagnitude, camShakeDuration));
+
+        // Graphics - need particles
+        //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
+        //Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+        StartCoroutine(LaserEffect());
 
         bulletsLeft--;
         bulletsShot--;
@@ -103,5 +127,13 @@ public class LaserSystem : MonoBehaviour
     {
         bulletsLeft = magazineSize;
         reloading = false;
+    }
+
+    private IEnumerator LaserEffect()
+    {
+        laserEffect.SetActive(true);
+        yield return new WaitForSeconds(timeBetweenShooting / 2);
+        laserEffect.SetActive(false);
+        yield break;
     }
 }

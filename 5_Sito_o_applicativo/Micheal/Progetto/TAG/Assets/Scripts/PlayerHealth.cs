@@ -21,29 +21,42 @@ public class PlayerHealth : MonoBehaviour
     public float duration; // How long the image stays fully opaque
     public float fadeSpeed; // How quickly the image will fade
 
+    [Header("Camera Shake")]
+    public CameraShake camShake;
+    public float camShakeMagnitude, camShakeDuration;
+
     private float durationTimer; // Timer to check against the duration
 
     void Start()
     {
         health = maxHealth;
-        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
+        if(overlay != null)
+            overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
     }
 
     void Update()
     {
         health = Mathf.Clamp(health, 0 , maxHealth);
         UpdateHealthUI();
-        if(overlay.color.a > 0)
+        if(health <= 0)
         {
-            if (health < 30)
-                return;
-            durationTimer += Time.deltaTime;
-            if(durationTimer > duration)
+            Destroy(gameObject);
+        }
+
+        if(overlay != null)
+        {
+            if (overlay.color.a > 0)
             {
-                // Fade the image
-                float tempAlpha = overlay.color.a;
-                tempAlpha -= Time.deltaTime * fadeSpeed;
-                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, tempAlpha);
+                if (health < 30)
+                    return;
+                durationTimer += Time.deltaTime;
+                if (durationTimer > duration)
+                {
+                    // Fade the image
+                    float tempAlpha = overlay.color.a;
+                    tempAlpha -= Time.deltaTime * fadeSpeed;
+                    overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, tempAlpha);
+                }
             }
         }
     }
@@ -80,7 +93,12 @@ public class PlayerHealth : MonoBehaviour
         health -= damage;
         lerpTimer = 0f;
         durationTimer = 0;
-        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1);
+        if(overlay != null)
+            overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1);
+
+        // ShakeCamera
+        if(camShake != null)
+            StartCoroutine(camShake.Shake(camShakeMagnitude, camShakeDuration));
     }
 
     public void RestoreHealth(float healAmount)

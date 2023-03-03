@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     private StateMachine stateMachine;
     private NavMeshAgent agent;
     public NavMeshAgent Agent { get => agent; }
+    public Transform Target;
 
     //Just for debugging purposes
     [SerializeField]
@@ -20,12 +21,23 @@ public class Enemy : MonoBehaviour
     {
         stateMachine = GetComponent<StateMachine>();
         agent = GetComponent<NavMeshAgent>();
-        stateMachine.Initialise();
+        //stateMachine.Initialise(); // 
+        agent.destination = Target.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        agent.destination = Target.position;
+        if (agent.remainingDistance > 5)
+            agent.isStopped = false;
+        else
+            agent.isStopped = true;
+
         
+        
+        // Re bakes everything
+        //UnityEditor.AI.NavMeshBuilder.ClearAllNavMeshes();
+        //UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
     }
 }
