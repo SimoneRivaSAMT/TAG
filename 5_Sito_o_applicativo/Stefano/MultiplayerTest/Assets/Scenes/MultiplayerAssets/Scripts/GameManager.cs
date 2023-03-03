@@ -15,6 +15,7 @@ namespace Assets.GameManagement
         private PlayersManagement playersManagement;
 
         public Transform spawn1_loc;
+        public Transform playerRespawnLocation;
         public TextMeshProUGUI playerCountText;
         public GameObject console;
 

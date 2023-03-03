@@ -48,7 +48,7 @@ public class MapGenerator : NetworkBehaviour
 
 
     [ServerRpc(RequireOwnership = false)]
-    private void GenerateMapServerRpc()
+    public void GenerateMapServerRpc()
     {
         for (int i = 0; i < walls.Length; i++)
         {

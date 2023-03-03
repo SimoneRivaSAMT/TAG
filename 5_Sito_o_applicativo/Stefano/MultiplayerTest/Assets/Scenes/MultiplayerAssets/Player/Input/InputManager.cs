@@ -8,6 +8,8 @@ public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
     public PlayerInput.OnFootActions onFoot;
+    public PlayerInput.OnShootActions onShoot;
+    
 
     private PlayerMotor motor;
     private PlayerLook look;
@@ -18,6 +20,8 @@ public class InputManager : MonoBehaviour
     {
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
+        onShoot = playerInput.OnShoot;
+
 
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
@@ -27,6 +31,7 @@ public class InputManager : MonoBehaviour
 
         onFoot.Crouch.performed += ctx => motor.Crouch();
         onFoot.Sprint.performed += ctx => motor.Sprint();
+
 
     }
 

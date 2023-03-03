@@ -24,7 +24,7 @@ public class NetManager : MonoBehaviour
             case "host":
                 textIP.text += " (HOST)";
                 NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(
-                    PlayerPrefs.GetString("connectIp"),
+                    "0.0.0.0",
                     (ushort)6969,
                     PlayerPrefs.GetString("connectIp")
                  );

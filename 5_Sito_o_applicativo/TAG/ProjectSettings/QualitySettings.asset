@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 2
+  m_CurrentQuality: 0
   m_QualitySettings:
   - serializedVersion: 2
     name: High Fidelity
@@ -21,7 +21,7 @@ QualitySettings:
     skinWeights: 255
     textureQuality: 0
     anisotropicTextures: 2
-    antiAliasing: 0
+    antiAliasing: 2
     softParticles: 0
     softVegetation: 0
     realtimeReflectionProbes: 0
@@ -40,7 +40,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: b9f3086da92434da0bc1518f19f0ce86,
+    customRenderPipeline: {fileID: 11400000, guid: 0d9b080bd77d6794898a32bd10202ea4,
       type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
@@ -77,7 +77,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: b9f3086da92434da0bc1518f19f0ce86,
+    customRenderPipeline: {fileID: 11400000, guid: be48ed20abf1e9c47a30dbce4d751374,
       type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
@@ -114,7 +114,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: b9f3086da92434da0bc1518f19f0ce86,
+    customRenderPipeline: {fileID: 11400000, guid: a9212c0aa63b5474a86ee6ff994402e3,
       type: 2}
     excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:

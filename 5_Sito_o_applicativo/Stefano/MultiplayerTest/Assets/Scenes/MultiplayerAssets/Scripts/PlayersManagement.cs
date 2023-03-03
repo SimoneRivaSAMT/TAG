@@ -40,6 +40,8 @@ public class PlayersManagement : NetworkBehaviour
             Debug.Log("Client connected, id: " + clientId);
         }
         catch { }
+        
+
     }
 
     [ServerRpc(RequireOwnership = false)]
