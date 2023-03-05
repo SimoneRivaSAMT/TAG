@@ -7,54 +7,82 @@ using Assets.Scenes;
 
 public class CreditsManager : MonoBehaviour
 {
-    [Header("Sound")]
-    public AudioSource audioSource;
-    [Header("Video")]
+    [Header("Objects")]
     public VideoPlayer videoPlayer;
-    public Animator transitionAnimator;
-    public Animator camAnimator;
-    [Header("Misc")]
-    public float videoStartDelay = 0f;
-    public GameObject[] childrens;
-    public int timeToReturnInPreviusScene = 30;
-    public float cameraAndVideoStartDelay = 0;
+    public Animator cameraAnimator;
+    public Animator[] lightsAnimators;
+    public Material glowMat;
+
+    [Header("Settings")]
+    public float videoStartDelaySeconds = 0;
+    public float cameraStartDelaySeconds = 0;
+    public float generalStartDelaySeconds = 0;
+    public float videoDuration = 0;
+
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        audioSource.Play();
-        StartCoroutine(WaitToStart());
+        glowMat.DisableKeyword("_EMISSION");
+        GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
+        for (int i = 0; i < lightsAnimators.Length; i++)
+        {
+            lightsAnimators[i] = lights[i].GetComponent<Animator>();
+        }
+        if (generalStartDelaySeconds > 0)
+            StartCoroutine(StartDelay(generalStartDelaySeconds));
+        else
+            GeneralStart();
+    }
+
+    private void GeneralStart() //starts lights and screens
+    {
+        foreach (Animator animator in lightsAnimators)
+        {
+            animator.SetTrigger("start");
+        }
+        glowMat.EnableKeyword("_EMISSION");
+        if (cameraStartDelaySeconds > 0)
+            StartCoroutine(CameraStartDelay(cameraStartDelaySeconds));
+        else
+            StartCamera();
     }
 
     private void StartCamera()
     {
-        camAnimator.SetTrigger("start");
-        StartCoroutine(ReturnBack());
+        cameraAnimator.SetTrigger("start");
+        if (videoStartDelaySeconds > 0)
+            StartCoroutine(VideoStartDelay(videoStartDelaySeconds));
+        else
+            StartVideo();
     }
 
     private void StartVideo()
     {
         videoPlayer.Play();
-        childrens[0].SetActive(false);
-        childrens[1].SetActive(true);
+        StartCoroutine(VideoManager(videoDuration));
     }
 
-    private IEnumerator WaitToStart()
+    private IEnumerator StartDelay(float sec)
     {
-        yield return new WaitForSeconds(cameraAndVideoStartDelay);
+        yield return new WaitForSeconds(sec);
+        GeneralStart();
+    }
+
+    private IEnumerator CameraStartDelay(float sec)
+    {
+        yield return new WaitForSeconds(sec);
         StartCamera();
-        yield return new WaitForSeconds(videoStartDelay);
+    }
+
+    private IEnumerator VideoStartDelay(float sec)
+    {
+        yield return new WaitForSeconds(sec);
         StartVideo();
     }
 
-    private IEnumerator ReturnBack()
+    private IEnumerator VideoManager(float sec)
     {
-        yield return new WaitForSeconds(timeToReturnInPreviusScene - 5);
-        transitionAnimator.SetTrigger("start");
-        yield return new WaitForSeconds(5);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        yield return new WaitForSeconds(sec);
         SceneManager.LoadScene((int)SceneToId.mainMenu);
     }
 }
