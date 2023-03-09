@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 using Assets.Scenes;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -11,14 +13,21 @@ public class MenuManager : MonoBehaviour
     public GameObject introObj;
     public int introDuration;
 
+    [Header("Privacy")]
+    public GameObject privacyObj;
+    public GameObject acceptButton;
+
+    private bool privacyAccepted = false;
+
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void OnBeforeSceneLoadRuntimeMethod() //viene eseguito solo all'avvio del gioco
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("FirstStart");
     }
 
     private void Start()
     {
+        UpdatePrivacyState();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         if(!PlayerPrefs.HasKey("FirstStart"))
@@ -30,6 +39,7 @@ public class MenuManager : MonoBehaviour
         else
         {
             ShowMainMenu();
+            CheckPrivacyPolicyState();
         }
         
     }
@@ -40,6 +50,7 @@ public class MenuManager : MonoBehaviour
         {
             StopCoroutine(IntroWait());
             ShowMainMenu();
+            CheckPrivacyPolicyState();
         }
     }
 
@@ -64,9 +75,39 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void ReadPrivacyInfo()
+    {
+        acceptButton.GetComponent<Button>().interactable = true;
+    }
+
+    public void AcceptPrivacyInfo()
+    {
+        PlayerPrefs.SetInt("PrivacyAccepted", 1);
+        UpdatePrivacyState();
+        CheckPrivacyPolicyState();
+    }
+
+    
     public void ViewCredits()
     {
         StartCoroutine(LoadSceneAsync((int)SceneToId.credits));
+    }
+
+    private void UpdatePrivacyState()
+    {
+        if (!PlayerPrefs.HasKey("PrivacyAccepted"))
+            PlayerPrefs.SetInt("PrivacyAccepted", 0);
+        privacyAccepted = PlayerPrefs.GetInt("PrivacyAccepted") switch
+        {
+            0 => false,
+            1 => true,
+            _ => false,
+        };
+    }
+
+    private void CheckPrivacyPolicyState()
+    {
+        privacyObj.SetActive(!privacyAccepted);
     }
 
     private void ShowMainMenu()
@@ -93,5 +134,6 @@ public class MenuManager : MonoBehaviour
     {
         yield return new WaitForSeconds(introDuration);
         ShowMainMenu();
+        CheckPrivacyPolicyState();
     }
 }
