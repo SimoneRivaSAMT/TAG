@@ -813,7 +813,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Aim"",
+                    ""name"": ""Shield"",
                     ""type"": ""Button"",
                     ""id"": ""2515980e-f802-41b6-9ef8-6316f30c714d"",
                     ""expectedControlType"": ""Button"",
@@ -846,7 +846,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f2e656d3-9ba6-4491-9558-d2305e72d0a5"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -883,7 +883,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim"",
+                    ""action"": ""Shield"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -894,7 +894,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim"",
+                    ""action"": ""Shield"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -948,7 +948,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_OnAction = asset.FindActionMap("OnAction", throwIfNotFound: true);
         m_OnAction_Interact = m_OnAction.FindAction("Interact", throwIfNotFound: true);
         m_OnAction_Tag = m_OnAction.FindAction("Tag", throwIfNotFound: true);
-        m_OnAction_Aim = m_OnAction.FindAction("Aim", throwIfNotFound: true);
+        m_OnAction_Shield = m_OnAction.FindAction("Shield", throwIfNotFound: true);
         m_OnAction_Reload = m_OnAction.FindAction("Reload", throwIfNotFound: true);
     }
 
@@ -1181,7 +1181,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IOnActionActions m_OnActionActionsCallbackInterface;
     private readonly InputAction m_OnAction_Interact;
     private readonly InputAction m_OnAction_Tag;
-    private readonly InputAction m_OnAction_Aim;
+    private readonly InputAction m_OnAction_Shield;
     private readonly InputAction m_OnAction_Reload;
     public struct OnActionActions
     {
@@ -1189,7 +1189,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public OnActionActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Interact => m_Wrapper.m_OnAction_Interact;
         public InputAction @Tag => m_Wrapper.m_OnAction_Tag;
-        public InputAction @Aim => m_Wrapper.m_OnAction_Aim;
+        public InputAction @Shield => m_Wrapper.m_OnAction_Shield;
         public InputAction @Reload => m_Wrapper.m_OnAction_Reload;
         public InputActionMap Get() { return m_Wrapper.m_OnAction; }
         public void Enable() { Get().Enable(); }
@@ -1206,9 +1206,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Tag.started -= m_Wrapper.m_OnActionActionsCallbackInterface.OnTag;
                 @Tag.performed -= m_Wrapper.m_OnActionActionsCallbackInterface.OnTag;
                 @Tag.canceled -= m_Wrapper.m_OnActionActionsCallbackInterface.OnTag;
-                @Aim.started -= m_Wrapper.m_OnActionActionsCallbackInterface.OnAim;
-                @Aim.performed -= m_Wrapper.m_OnActionActionsCallbackInterface.OnAim;
-                @Aim.canceled -= m_Wrapper.m_OnActionActionsCallbackInterface.OnAim;
+                @Shield.started -= m_Wrapper.m_OnActionActionsCallbackInterface.OnShield;
+                @Shield.performed -= m_Wrapper.m_OnActionActionsCallbackInterface.OnShield;
+                @Shield.canceled -= m_Wrapper.m_OnActionActionsCallbackInterface.OnShield;
                 @Reload.started -= m_Wrapper.m_OnActionActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_OnActionActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_OnActionActionsCallbackInterface.OnReload;
@@ -1222,9 +1222,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Tag.started += instance.OnTag;
                 @Tag.performed += instance.OnTag;
                 @Tag.canceled += instance.OnTag;
-                @Aim.started += instance.OnAim;
-                @Aim.performed += instance.OnAim;
-                @Aim.canceled += instance.OnAim;
+                @Shield.started += instance.OnShield;
+                @Shield.performed += instance.OnShield;
+                @Shield.canceled += instance.OnShield;
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
@@ -1257,7 +1257,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnInteract(InputAction.CallbackContext context);
         void OnTag(InputAction.CallbackContext context);
-        void OnAim(InputAction.CallbackContext context);
+        void OnShield(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
     }
 }

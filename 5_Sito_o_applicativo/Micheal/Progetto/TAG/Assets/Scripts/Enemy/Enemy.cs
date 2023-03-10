@@ -33,7 +33,6 @@ public class Enemy : MonoBehaviour
             agent.isStopped = false;
         else
             agent.isStopped = true;
-
         
         
         // Re bakes everything
