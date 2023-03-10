@@ -20,11 +20,14 @@ public class NetworkPlayer : NetworkBehaviour
         _camera = GetComponentInChildren<Camera>();
         _audioListener = GetComponentInChildren<AudioListener>();
         _playersManagement = FindObjectOfType<PlayersManagement>();
+        
         if (!IsOwner)
         {
             _audioListener.enabled = false;
             _camera.enabled = false;
             _playersManagement.enabled = false;
+            
+            return;
         }
         NetworkId = GetComponent<NetworkObject>().NetworkObjectId;
         _playersManagement.ClientConnectedServerRpc(NetworkId);
@@ -33,7 +36,9 @@ public class NetworkPlayer : NetworkBehaviour
     private void Update()
     {
         if (!IsOwner) return;
-        
+        if (Input.GetKeyDown(KeyCode.Y))
+            //Destroy(FindObjectOfType<PlayersManagement>().GetPlayers()[1]);
+            Debug.LogError(FindObjectOfType<PlayersManagement>().GetPlayers()[1].name);
     }
 
     public void TakeDamage()

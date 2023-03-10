@@ -34,7 +34,15 @@ public class PlayerInteract : NetworkBehaviour
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            Debug.LogError(GetComponent<NetworkPlayer>().NetworkId);
+            if (IsHost)
+            {
+                foreach (KeyValuePair<ulong, GameObject> kvp in FindObjectOfType<PlayersManagement>().GetPlayers())
+                {
+                    Debug.Log(string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value));
+                }
+            }
+                
+            Debug.LogError("My ID (stored locally): "  + NetworkManager.Singleton.LocalClientId);
         }
     }
 
@@ -48,8 +56,8 @@ public class PlayerInteract : NetworkBehaviour
         {
             if (hitInfo.collider.CompareTag("Player"))
             {
-                damageManager.PlayerHittedServerRpc(hitInfo.collider.gameObject.GetComponent<NetworkPlayer>().NetworkId);
-                //TODO fix this
+                ulong net = hitInfo.collider.gameObject.GetComponent<NetworkObject>().NetworkObjectId;   
+                damageManager.PlayerHittedServerRpc(net);
             }
         }
 
