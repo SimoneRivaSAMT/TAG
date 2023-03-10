@@ -791,7 +791,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Aim",
+                    "name": "Shield",
                     "type": "Button",
                     "id": "2515980e-f802-41b6-9ef8-6316f30c714d",
                     "expectedControlType": "Button",
@@ -824,7 +824,7 @@
                 {
                     "name": "",
                     "id": "f2e656d3-9ba6-4491-9558-d2305e72d0a5",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -861,7 +861,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim",
+                    "action": "Shield",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -872,7 +872,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim",
+                    "action": "Shield",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
