@@ -1,0 +1,45 @@
+{
+    "name": "PlayerInput",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "eb01a810-20c8-4f7d-a3b8-b9c46b8afc14",
+            "actions": [
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "9bafd698-1298-4ebc-90cf-0a59512ff51a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b71c2d94-79cd-4143-ba66-d28cb6bebaf2",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e035f8e-d9ce-46b4-a5f5-cfc42dcde419",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
