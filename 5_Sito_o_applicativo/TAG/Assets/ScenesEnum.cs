@@ -7,6 +7,8 @@ namespace Assets.Scenes
     public enum SceneToId
     {
         mainMenu = 0,
-        credits = 1
+        credits = 1,
+        howToPlay = 2,
+        settings = 3
     }
 }

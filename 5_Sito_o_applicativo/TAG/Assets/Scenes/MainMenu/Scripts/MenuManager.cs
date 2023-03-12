@@ -18,6 +18,8 @@ public class MenuManager : MonoBehaviour
     public GameObject acceptButton;
 
     private bool privacyAccepted = false;
+    private InputManager inputManager;
+    private int id;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void OnBeforeSceneLoadRuntimeMethod() //viene eseguito solo all'avvio del gioco
@@ -27,26 +29,29 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        inputManager = FindObjectOfType<InputManager>();
         UpdatePrivacyState();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
-        if(!PlayerPrefs.HasKey("FirstStart"))
+        if (SceneManager.GetActiveScene().buildIndex == (int)SceneToId.mainMenu)
         {
-            menuObj.SetActive(false);
-            introObj.SetActive(true);
-            StartCoroutine(IntroWait());
+            if (!PlayerPrefs.HasKey("FirstStart"))
+            {
+                menuObj.SetActive(false);
+                introObj.SetActive(true);
+                StartCoroutine(IntroWait());
+            }
+            else
+            {
+                ShowMainMenu();
+                CheckPrivacyPolicyState();
+            }
         }
-        else
-        {
-            ShowMainMenu();
-            CheckPrivacyPolicyState();
-        }
-        
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (inputManager.ui.Back.triggered && SceneManager.GetActiveScene().buildIndex == (int)SceneToId.mainMenu)
         {
             StopCoroutine(IntroWait());
             ShowMainMenu();
@@ -54,9 +59,14 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene((int)SceneToId.mainMenu);
+    }
+
     public void OpenSettings()
     {
-
+        SceneManager.LoadScene((int)SceneToId.settings);
     }
 
     public void StartGame()
@@ -66,7 +76,7 @@ public class MenuManager : MonoBehaviour
 
     public void ViewGuide()
     {
-
+        SceneManager.LoadScene((int)SceneToId.howToPlay);
     }
 
     public void ExitGame()
@@ -91,6 +101,11 @@ public class MenuManager : MonoBehaviour
     public void ViewCredits()
     {
         StartCoroutine(LoadSceneAsync((int)SceneToId.credits));
+    }
+
+    public void SetInt(int id)
+    {
+        this.id = id;
     }
 
     private void UpdatePrivacyState()

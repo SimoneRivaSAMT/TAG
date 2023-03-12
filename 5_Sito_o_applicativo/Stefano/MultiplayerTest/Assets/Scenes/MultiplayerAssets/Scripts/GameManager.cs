@@ -42,7 +42,7 @@ namespace Assets.GameManagement
                 console.active = !console.active;
                 Cursor.visible = !Cursor.visible;
             }
-            if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKey(KeyCode.Escape)) //crash example
             {
                 deltaTime += Time.deltaTime;
                 if(deltaTime > 2f)
@@ -51,9 +51,11 @@ namespace Assets.GameManagement
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.Confined;
                     NetworkManager.Singleton.Shutdown();
-                    SceneManager.LoadScene(0);
+                    SceneManager.LoadScene(2);
                 }
             }
+
+
         }
     }
 }

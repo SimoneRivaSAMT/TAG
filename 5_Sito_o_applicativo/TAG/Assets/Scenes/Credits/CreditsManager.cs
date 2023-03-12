@@ -11,7 +11,6 @@ public class CreditsManager : MonoBehaviour
     public VideoPlayer videoPlayer;
     public Animator cameraAnimator;
     public Animator[] lightsAnimators;
-    public Material glowMat;
 
     [Header("Settings")]
     public float videoStartDelaySeconds = 0;
@@ -22,7 +21,6 @@ public class CreditsManager : MonoBehaviour
 
     private void Start()
     {
-        glowMat.DisableKeyword("_EMISSION");
         GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
         for (int i = 0; i < lightsAnimators.Length; i++)
         {
@@ -40,7 +38,6 @@ public class CreditsManager : MonoBehaviour
         {
             animator.SetTrigger("start");
         }
-        glowMat.EnableKeyword("_EMISSION");
         if (cameraStartDelaySeconds > 0)
             StartCoroutine(CameraStartDelay(cameraStartDelaySeconds));
         else

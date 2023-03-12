@@ -11,7 +11,6 @@ public class PlayerInteract : NetworkBehaviour
     [SerializeField]
     private LayerMask mask;
     private PlayerUI playerUI;
-    private InputManager inputManager;
 
     private DamageManager damageManager;
 
@@ -20,13 +19,14 @@ public class PlayerInteract : NetworkBehaviour
         damageManager = GetComponent<DamageManager>();
         cam = GetComponent<PlayerLook>().cam;
         playerUI = GetComponent<PlayerUI>();
-        inputManager = GetComponent<InputManager>();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;   
     }
 
     void Update()
     {
+        if (!IsOwner)
+            return;
         playerUI.UpdateText(string.Empty);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -42,12 +42,13 @@ public class PlayerInteract : NetworkBehaviour
                 }
             }
                 
-            Debug.LogError("My ID (stored locally): "  + NetworkManager.Singleton.LocalClientId);
+            Debug.LogError("My ID (stored locally): "  + GetComponent<NetworkObject>().NetworkObjectId);
         }
     }
 
     public void PlayerShoot()
     {
+
         // Create a ray at the center of the camera, shooting outwards
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * distance);
@@ -58,6 +59,7 @@ public class PlayerInteract : NetworkBehaviour
             {
                 ulong net = hitInfo.collider.gameObject.GetComponent<NetworkObject>().NetworkObjectId;   
                 damageManager.PlayerHittedServerRpc(net);
+                Debug.LogError("Ho colpito il player " + net);
             }
         }
 

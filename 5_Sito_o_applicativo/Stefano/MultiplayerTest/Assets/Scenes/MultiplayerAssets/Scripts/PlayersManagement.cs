@@ -81,11 +81,17 @@ public class PlayersManagement : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void ClientDisconnectedServerRpc(ulong clientId)
+    public void ClientDisconnectedServerRpc(ulong clientId, bool serverCrashed)
     {
         Debug.Log("Client disconnected, id: " + clientId);
-        players.Remove(clientId);
-        UpdateDictCount();
+        
+        if (!serverCrashed)
+        {
+            players.Remove(clientId);
+            UpdateDictCount();
+            return;
+        }
+        Debug.LogError("Server crashed!");
     }
 
     public int GetNumberOfClients()
@@ -113,6 +119,7 @@ public class PlayersManagement : NetworkBehaviour
         }
         return 999;
     }
+
     private void UpdateDictCount()
     {
         clientsConnected.Value = players.Count;

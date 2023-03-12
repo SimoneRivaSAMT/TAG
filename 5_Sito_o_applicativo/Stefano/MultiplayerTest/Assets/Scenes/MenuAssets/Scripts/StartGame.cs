@@ -9,6 +9,12 @@ public class StartGame : MonoBehaviour
 {
     public TMP_InputField ipAddressInput;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
+
     public void StartAsHost()
     {
         PlayerPrefs.SetString("multiplayerMode", "host");
