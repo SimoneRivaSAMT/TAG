@@ -2414,22 +2414,23 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Hi gamer,
 
-    before you play T.A.G. we would inform you
+    before you play T.A.G. we would like to inform you
 
-    that this
-    game use your personal information and we
+    that
+    this game will use your personal information and we
 
-    will store your  data on our servers.
+    will store your data
+    on our servers.
 
-    This
-    is normal, all games do this!
+    This is normal, all games do this!
 
-    Consider to read the policy and accept before
-    you start the online match.
+    Consider to read
+    the policy and accept before you start the online match.
 
     Thank you,
 
-    Game Studio 3 team'
+    Game
+    Studio 3 team'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b053df02972748249abf52d165290533, type: 2}
   m_sharedMaterial: {fileID: 8859558529234186633, guid: b053df02972748249abf52d165290533,
