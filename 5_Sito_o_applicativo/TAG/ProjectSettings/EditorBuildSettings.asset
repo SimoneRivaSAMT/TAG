@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu/InScenes/Settings/SettingsScene.unity
     guid: 920ad543cf5777e468c06ea90eef9e9a
+  - enabled: 1
+    path: Assets/Scenes/MainMenu/InScenes/Play/LobbyScene.unity
+    guid: 9071cc2f2770a51439e039167c712bbd
+  - enabled: 1
+    path: Assets/Scenes/MainMenu/InScenes/Play/CreateLobbyScene.unity
+    guid: eaada2fd71a050e43ae980d7caab19fe
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a606b1c8e1485b74d919451e09c50614,
       type: 2}

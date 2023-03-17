@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.PlayerPreferences;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -19,24 +20,21 @@ public class SettingsManager : MonoBehaviour
     public float defSensY = 30;
     private void Awake()
     {
-        display.value = PlayerPrefs.GetInt("Display");
-        graphic.value = PlayerPrefs.GetInt("Graphic");
+        display.value = PlayerPrefs.GetInt(PlayerPreference.SETTINGS_DISPLAY);
+        graphic.value = PlayerPrefs.GetInt(PlayerPreference.SETTINGS_GRAPHICS);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-
-        defVolume = PlayerPrefs.GetFloat("Volume");
-        defSensX = PlayerPrefs.GetFloat("SensX");
-        defSensY = PlayerPrefs.GetFloat("SensY");
+        defVolume = PlayerPrefs.GetFloat(PlayerPreference.SETTINGS_VOLUME);
+        defSensX = PlayerPrefs.GetFloat(PlayerPreference.SETTINGS_SENS_X);
+        defSensY = PlayerPrefs.GetFloat(PlayerPreference.SETTINGS_SENS_Y);
         volumeSlider.value = defVolume;
         sensXSlider.value = defSensX;
         sensYSlider.value = defSensY;
-        Debug.Log(PlayerPrefs.GetInt("Display") + " " + PlayerPrefs.GetInt("Graphic"));
+        Debug.Log(PlayerPrefs.GetInt(PlayerPreference.SETTINGS_DISPLAY) + " " + PlayerPrefs.GetInt(PlayerPreference.SETTINGS_GRAPHICS));
     }
 
-    // Update is called once per frame
     void Update()
     {
         volume.text = defVolume.ToString();
@@ -45,9 +43,9 @@ public class SettingsManager : MonoBehaviour
         defVolume = volumeSlider.value;
         defSensX = sensXSlider.value;
         defSensY = sensYSlider.value;
-        PlayerPrefs.SetFloat("Volume", defVolume);
-        PlayerPrefs.SetFloat("SensX", defSensX);
-        PlayerPrefs.SetFloat("SensY", defSensY);
+        PlayerPrefs.SetFloat(PlayerPreference.SETTINGS_VOLUME, defVolume);
+        PlayerPrefs.SetFloat(PlayerPreference.SETTINGS_SENS_X, defSensX);
+        PlayerPrefs.SetFloat(PlayerPreference.SETTINGS_SENS_Y, defSensY);
         
     }
 
@@ -63,8 +61,8 @@ public class SettingsManager : MonoBehaviour
 
     public void DropdownValues()
     {
-        PlayerPrefs.SetInt("Display", display.value);
-        PlayerPrefs.SetInt("Graphic", graphic.value);
+        PlayerPrefs.SetInt(PlayerPreference.SETTINGS_DISPLAY, display.value);
+        PlayerPrefs.SetInt(PlayerPreference.SETTINGS_GRAPHICS, graphic.value);
         
     }
 }

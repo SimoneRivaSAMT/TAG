@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using Assets.Scenes;
 using UnityEngine.UI;
+using Assets.PlayerPreferences;
 
 public class MenuManager : MonoBehaviour
 {
@@ -24,7 +25,8 @@ public class MenuManager : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void OnBeforeSceneLoadRuntimeMethod() //viene eseguito solo all'avvio del gioco
     {
-        PlayerPrefs.DeleteKey("FirstStart");
+        PlayerPrefs.DeleteKey(PlayerPreference.MENU_IS_FIRST_START);
+        
     }
 
     private void Start()
@@ -35,7 +37,7 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = true;
         if (SceneManager.GetActiveScene().buildIndex == (int)SceneToId.mainMenu)
         {
-            if (!PlayerPrefs.HasKey("FirstStart"))
+            if (!PlayerPrefs.HasKey(PlayerPreference.MENU_IS_FIRST_START))
             {
                 menuObj.SetActive(false);
                 introObj.SetActive(true);
@@ -71,7 +73,12 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
+        SceneManager.LoadScene((int)SceneToId.lobby);
+    }
 
+    public void CreateLobby()
+    {
+        SceneManager.LoadScene((int)SceneToId.createLobby);
     }
 
     public void ViewGuide()
@@ -92,7 +99,7 @@ public class MenuManager : MonoBehaviour
 
     public void AcceptPrivacyInfo()
     {
-        PlayerPrefs.SetInt("PrivacyAccepted", 1);
+        PlayerPrefs.SetInt(PlayerPreference.MENU_PRIVACY_ACCEPTED, 1);
         UpdatePrivacyState();
         CheckPrivacyPolicyState();
     }
@@ -110,9 +117,9 @@ public class MenuManager : MonoBehaviour
 
     private void UpdatePrivacyState()
     {
-        if (!PlayerPrefs.HasKey("PrivacyAccepted"))
-            PlayerPrefs.SetInt("PrivacyAccepted", 0);
-        privacyAccepted = PlayerPrefs.GetInt("PrivacyAccepted") switch
+        if (!PlayerPrefs.HasKey(PlayerPreference.MENU_PRIVACY_ACCEPTED))
+            PlayerPrefs.SetInt(PlayerPreference.MENU_PRIVACY_ACCEPTED, 0);
+        privacyAccepted = PlayerPrefs.GetInt(PlayerPreference.MENU_PRIVACY_ACCEPTED) switch
         {
             0 => false,
             1 => true,
@@ -129,7 +136,7 @@ public class MenuManager : MonoBehaviour
     {
         menuObj.SetActive(true);
         introObj.SetActive(false);
-        PlayerPrefs.SetInt("FirstStart", 0);
+        PlayerPrefs.SetInt(PlayerPreference.MENU_IS_FIRST_START, 0);
     }
 
     private IEnumerator LoadSceneAsync(int index)
