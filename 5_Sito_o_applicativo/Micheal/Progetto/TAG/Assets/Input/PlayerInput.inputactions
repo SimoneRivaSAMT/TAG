@@ -33,6 +33,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "LookGamepad",
+                    "type": "Value",
+                    "id": "2a8d8102-c035-48b3-85b4-ca8a77b0790c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Crouch",
                     "type": "Button",
                     "id": "7d0192dc-49d6-4f8c-9b85-b4a2e9b135cc",
@@ -186,17 +195,6 @@
                 },
                 {
                     "name": "",
-                    "id": "cb2f7ea9-26f2-4e73-bbbe-387f30259615",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "7333f907-e893-4a1d-b100-eafb412035e4",
                     "path": "<Mouse>/delta",
                     "interactions": "",
@@ -247,6 +245,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "630ed3dc-7676-4271-8dde-c06849830161",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookGamepad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

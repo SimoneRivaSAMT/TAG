@@ -18,6 +18,7 @@ public class EnemyLaserSystem : MonoBehaviour
     //References
     //public Camera fpsCam;
     //public GameObject enemy;
+    //private Enemy enemy;
     public GameObject player;
     //public Transform attackPoint;
     public RaycastHit rayHit;
@@ -38,6 +39,7 @@ public class EnemyLaserSystem : MonoBehaviour
 
     private void Awake()
     {
+        //enemy = GetComponent<Enemy>();
         //inputManager = player.GetComponent<InputManager>();
         bulletsLeft = magazineSize;
         readyToShoot = true;
@@ -56,12 +58,13 @@ public class EnemyLaserSystem : MonoBehaviour
 
     private void Update()
     {
+        //enemy = GetComponent<Enemy>();
         MyInput();
 
         // Look at Player
         
-        transform.parent.LookAt(player.transform);
-
+        transform.parent.LookAt(Enemy.Target.transform);
+        Debug.Log(name + "Look: " + Enemy.Target.name);
         // SetText
         //text.SetText(bulletsLeft + " / " + magazineSize);
     }
@@ -100,13 +103,13 @@ public class EnemyLaserSystem : MonoBehaviour
         float y = Random.Range(-spread, spread);
 
         // Calculate Direction with Spread
-        Vector3 direction = (player.transform.position - transform.position) + new Vector3(x, y, 0);
+        Vector3 direction = (Enemy.Target.transform.position - transform.position) + new Vector3(x, y, 0);
 
         // RayCast
         Debug.DrawRay(transform.position, direction);
         if (Physics.Raycast(transform.position, direction, out rayHit, range, whatIsEnemy))
         {
-            Debug.Log(rayHit.collider.name);
+            //Debug.Log(rayHit.collider.name);
 
             if (rayHit.collider.CompareTag("Enemy") || rayHit.collider.CompareTag("Player"))
             {

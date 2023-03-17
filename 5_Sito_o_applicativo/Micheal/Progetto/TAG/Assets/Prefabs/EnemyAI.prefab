@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 849827403910923365}
   - component: {fileID: 2406379107869837124}
   - component: {fileID: 6743445725276986387}
-  - component: {fileID: 2398036484355834097}
   - component: {fileID: 6884503297382793816}
   m_Layer: 0
   m_Name: LaserSMG
@@ -99,37 +98,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2398036484355834097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986493697166163551}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d224455c429aa4eace72b69c9ef2ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  timeBetweenShooting: 0.05
-  spread: 0.02
-  range: 100
-  reloadTime: 1
-  timeBetweenShots: 0
-  magazineSize: 30
-  bulletsPerTap: 1
-  allowButtonHold: 1
-  fpsCam: {fileID: 0}
-  player: {fileID: 0}
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 2147483647
-  laserEffect: {fileID: 8112479313390193758}
-  camShake: {fileID: 0}
-  camShakeMagnitude: 0.05
-  camShakeDuration: 0.05
-  text: {fileID: 0}
 --- !u!114 &6884503297382793816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,17 +116,15 @@ MonoBehaviour:
   range: 100
   reloadTime: 1
   timeBetweenShots: 0
-  magazineSize: 30
+  magazineSize: 9999
   bulletsPerTap: 1
   allowButtonHold: 1
-  enemy: {fileID: 7518726277308090426}
   player: {fileID: 0}
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 2147483647
   laserEffect: {fileID: 8112479313390193758}
-  camShakeMagnitude: 0
-  camShakeDuration: 0
+  enemyWaitTime: 0
 --- !u!1 &5882323648120150964
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,14 +405,12 @@ MonoBehaviour:
   magazineSize: 0
   bulletsPerTap: 0
   allowButtonHold: 0
-  enemy: {fileID: 0}
   player: {fileID: 0}
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 0
   laserEffect: {fileID: 0}
-  camShakeMagnitude: 0
-  camShakeDuration: 0
+  enemyWaitTime: 0
 --- !u!1 &7518726277308090426
 GameObject:
   m_ObjectHideFlags: 0

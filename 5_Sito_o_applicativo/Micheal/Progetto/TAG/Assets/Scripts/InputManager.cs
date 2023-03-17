@@ -37,7 +37,8 @@ public class InputManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
+        look.ProcessLook(onFoot.Look.ReadValue<Vector2>(), false);
+        look.ProcessLook(onFoot.LookGamepad.ReadValue<Vector2>(), true);
     }
 
     private void OnEnable()

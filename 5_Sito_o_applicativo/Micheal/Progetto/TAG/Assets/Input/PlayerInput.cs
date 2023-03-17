@@ -55,6 +55,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""LookGamepad"",
+                    ""type"": ""Value"",
+                    ""id"": ""2a8d8102-c035-48b3-85b4-ca8a77b0790c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""7d0192dc-49d6-4f8c-9b85-b4a2e9b135cc"",
@@ -208,17 +217,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cb2f7ea9-26f2-4e73-bbbe-387f30259615"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""7333f907-e893-4a1d-b100-eafb412035e4"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -269,6 +267,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""630ed3dc-7676-4271-8dde-c06849830161"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookGamepad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -930,6 +939,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_OnFoot_Movement = m_OnFoot.FindAction("Movement", throwIfNotFound: true);
         m_OnFoot_Jump = m_OnFoot.FindAction("Jump", throwIfNotFound: true);
         m_OnFoot_Look = m_OnFoot.FindAction("Look", throwIfNotFound: true);
+        m_OnFoot_LookGamepad = m_OnFoot.FindAction("LookGamepad", throwIfNotFound: true);
         m_OnFoot_Crouch = m_OnFoot.FindAction("Crouch", throwIfNotFound: true);
         m_OnFoot_Sprint = m_OnFoot.FindAction("Sprint", throwIfNotFound: true);
         // UI
@@ -1012,6 +1022,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Movement;
     private readonly InputAction m_OnFoot_Jump;
     private readonly InputAction m_OnFoot_Look;
+    private readonly InputAction m_OnFoot_LookGamepad;
     private readonly InputAction m_OnFoot_Crouch;
     private readonly InputAction m_OnFoot_Sprint;
     public struct OnFootActions
@@ -1021,6 +1032,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_OnFoot_Movement;
         public InputAction @Jump => m_Wrapper.m_OnFoot_Jump;
         public InputAction @Look => m_Wrapper.m_OnFoot_Look;
+        public InputAction @LookGamepad => m_Wrapper.m_OnFoot_LookGamepad;
         public InputAction @Crouch => m_Wrapper.m_OnFoot_Crouch;
         public InputAction @Sprint => m_Wrapper.m_OnFoot_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
@@ -1041,6 +1053,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Look.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnLook;
+                @LookGamepad.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnLookGamepad;
+                @LookGamepad.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnLookGamepad;
+                @LookGamepad.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnLookGamepad;
                 @Crouch.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnCrouch;
@@ -1060,6 +1075,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @LookGamepad.started += instance.OnLookGamepad;
+                @LookGamepad.performed += instance.OnLookGamepad;
+                @LookGamepad.canceled += instance.OnLookGamepad;
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
@@ -1237,6 +1255,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnLookGamepad(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
     }
