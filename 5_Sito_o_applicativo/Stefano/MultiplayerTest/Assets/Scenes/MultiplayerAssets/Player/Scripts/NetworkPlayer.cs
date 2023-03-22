@@ -6,97 +6,92 @@ using Assets.GameManagement;
 using System;
 using UnityEngine.SceneManagement;
 
+/*
+ Questo script gestisce il player nella rete Netcode
+ */
+
 public class NetworkPlayer : NetworkBehaviour
 {
-    private bool serverCrashed = false;
     private Camera _camera;
     private AudioListener _audioListener;
     private PlayersManagement _playersManagement;
-    private GameManager gameManager;
-    private int _life;
+    private float deltaTime;
     public ulong NetworkId;
-
-
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
-        _life = 3;
         _camera = GetComponentInChildren<Camera>();
         _audioListener = GetComponentInChildren<AudioListener>();
         _playersManagement = FindObjectOfType<PlayersManagement>();
-        
-        if (!IsOwner)
-        {
-            _audioListener.enabled = false;
-            _camera.enabled = false;
-            _playersManagement.enabled = false;
 
+        if (!IsOwner) //Se chi richiama questo metodo non è il proprietario allora...
+        {
+            _audioListener.enabled = false; //...viene disabilitato l'audiolistener
+            _camera.enabled = false; //...viene disabilitata la camera
+            _playersManagement.enabled = false; //...viene disabilitato questo script
+
+            //vengono disabilitati questi componeti
             GetComponent<NetworkObject>().enabled = false;
             GetComponent<NetworkPlayer>().enabled = false;
             GetComponent<DamageManager>().enabled = false;
             GetComponent<PlayerInteract>().enabled = false;
             return;
         }
-        NetworkId = GetComponent<NetworkObject>().NetworkObjectId;
-        _playersManagement.ClientConnectedServerRpc(NetworkId);
+        NetworkId = GetComponent<NetworkObject>().NetworkObjectId; //vado a prendere dal server il mio id
+        _playersManagement.ClientConnectedServerRpc(NetworkId); //avviso il server che mi sono connesso
     }
 
     private void Update()
     {
-        if (!IsOwner) return;
-        if (IsHost && NetworkManager.Singleton.ShutdownInProgress)
+        if (!IsOwner) return; //se non sono l'owner non faccio nulla
+        if (IsHost && NetworkManager.Singleton.ShutdownInProgress) //Se l'host crasha 
         {
             Debug.LogError("Singleton shutdown in corso (server)");
-            DisconnectAllClients();
+            DisconnectAllClientsServerRpc();
         }
         if (Input.GetKey(KeyCode.T)) //match end example
         {
-            if (IsHost)
+            if (IsHost) //match terminato (no errore)
             {
-                Debug.Log("Match terminato");
-                serverCrashed = false;
-                DisconnectAllClients(true);
+                DisconnectAllClientsServerRpc();
+            }
+        }
+        if (Input.GetKey(KeyCode.Escape)) //crash example
+        {
+            deltaTime += Time.deltaTime;
+            if (deltaTime > 2f)
+            {
+                deltaTime = 0f;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                NetworkManager.Singleton.Shutdown();
             }
         }
     }
 
-    private void DisconnectAllClients(bool isMatchEnded = false)
+    [ServerRpc(RequireOwnership = true)]
+    private void DisconnectAllClientsServerRpc() //disconnetto tutti i giocatori
     {
-        if(!isMatchEnded)
-            serverCrashed = true;
-        if (!IsHost)
-            return;
-        foreach (KeyValuePair<ulong, GameObject> player in _playersManagement.GetPlayers())
-        {
-            if (player.Key == 1)
-                continue;
-            player.Value.GetComponent<NetworkObject>().Despawn();
-        }
+        EndAllConnectionsClientRpc();
     }
 
-    private void Disconnect(ulong instanceId)
+    [ClientRpc]
+    private void EndAllConnectionsClientRpc()
     {
-        _playersManagement.ClientDisconnectedServerRpc(instanceId, serverCrashed);
+        if (!IsOwner)
+            return;
+        NetworkManager.Singleton.Shutdown();
     }
 
     public override void OnNetworkDespawn()
     {
-        Debug.LogError("Player " + GetComponent<NetworkObject>().NetworkObjectId + " despawnato");
-        Disconnect(GetComponent<NetworkObject>().NetworkObjectId);
-        base.OnNetworkDespawn();
-        NetworkManager.Singleton.Shutdown();
-        if (!serverCrashed)
+        if (IsClient && IsLocalPlayer)
         {
-            
-            SceneManager.LoadScene(0);
-        }
-        else
-        {
-            
+            ulong netId = GetComponent<NetworkObject>().NetworkObjectId;
+            int playerScore = 0; //query
+            PlayerPrefs.SetInt("score", playerScore);
             SceneManager.LoadScene(2);
+            NetworkManager.Singleton.Shutdown();
         }
-        
     }
-
 }

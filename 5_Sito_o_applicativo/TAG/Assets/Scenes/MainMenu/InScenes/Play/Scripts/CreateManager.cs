@@ -10,11 +10,11 @@ public class CreateManager : MonoBehaviour
     public GameObject button;
     ColorBlock cb;
 
-    string lobbyName = text.text;
+    string lobbyName;
 
     private void Start()
     {
-
+        lobbyName = text.text;
     }
     void Update()
     {

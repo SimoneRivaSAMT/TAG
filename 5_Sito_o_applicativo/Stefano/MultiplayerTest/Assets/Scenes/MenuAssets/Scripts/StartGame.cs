@@ -4,10 +4,15 @@ using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
+/*
+ Script che gestisce il menu. PER OGNI PLAYERPREFS USARE UN ENUM
+ */
 public class StartGame : MonoBehaviour
 {
     public TMP_InputField ipAddressInput;
+    public TMP_InputField usernameInput;
 
     private void Start()
     {
@@ -15,10 +20,14 @@ public class StartGame : MonoBehaviour
         Cursor.visible = true;
     }
 
+    public void GetLobbies()
+    {
+        StartCoroutine(GetLobbiesFromDb());
+    }
+
     public void StartAsHost()
     {
-        PlayerPrefs.SetString("multiplayerMode", "host");
-        SceneManager.LoadScene(1);
+        StartCoroutine(AddLobbyOnDb());
     }
 
     public void StartAsClient()
@@ -49,5 +58,41 @@ public class StartGame : MonoBehaviour
         else
             //Matching the pattern    
             return check.IsMatch(Address, 0);
+    }
+
+    private IEnumerator AddLobbyOnDb()
+    {
+        WWWForm form = new WWWForm();
+        string myIp = new System.Net.WebClient().DownloadString("https://api.ipify.org");
+        form.AddField("username", usernameInput.text.Length > 0 ? usernameInput.text.ToString() : "no_name");
+        form.AddField("ip_address", myIp);
+        form.AddField("action", "add-lobby");
+        UnityWebRequest www = UnityWebRequest.Post("http://localhost/tag_www/app/vacant_match.php", form);
+        yield return www.SendWebRequest();
+        if(www.result == UnityWebRequest.Result.Success)
+        {
+            PlayerPrefs.SetString("multiplayerMode", "host");
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            Debug.LogError("www error! " + www.error.ToString());
+        }
+    }
+
+    private IEnumerator GetLobbiesFromDb()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("action", "get-lobbies");
+        UnityWebRequest www = UnityWebRequest.Post("http://localhost/tag_www/app/vacant_match.php", form);
+        yield return www.SendWebRequest();
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log(www.downloadHandler.text);
+        }
+        else
+        {
+            Debug.LogError("www error! " + www.error.ToString());
+        }
     }
 }

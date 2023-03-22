@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
+/*
+ Questo script gestisce le cutscene su tutti i giocatori
+ L'host da il comando e tutti i client seguono
+ */
+
 public class CutsceneManager : NetworkBehaviour
 {
     private Animator anim;
@@ -16,7 +21,7 @@ public class CutsceneManager : NetworkBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) && IsHost)
+        if (Input.GetKeyDown(KeyCode.C) && IsHost) //Se chi richiama questa funzione è host allora starta la cutscene
         {
             StartAnimationClientRpc();
         }
