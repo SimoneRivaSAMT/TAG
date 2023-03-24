@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.AI;
 
 public class EnemyLaserSystem : MonoBehaviour
 {
@@ -18,8 +19,9 @@ public class EnemyLaserSystem : MonoBehaviour
     //References
     //public Camera fpsCam;
     //public GameObject enemy;
-    //private Enemy enemy;
-    public GameObject player;
+    private Enemy enemy;
+    private GameObject Target;
+    public GameObject Agent;
     //public Transform attackPoint;
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
@@ -39,7 +41,12 @@ public class EnemyLaserSystem : MonoBehaviour
 
     private void Awake()
     {
-        //enemy = GetComponent<Enemy>();
+        enemy = Agent.GetComponent<Enemy>();
+        NavMeshAgent agent = Agent.GetComponent<NavMeshAgent>();
+        enemy.Agent = agent;
+        Debug.Log(Target);
+        Target = enemy.GetClosestPlayer();
+        Debug.Log(Target);
         //inputManager = player.GetComponent<InputManager>();
         bulletsLeft = magazineSize;
         readyToShoot = true;
@@ -58,13 +65,14 @@ public class EnemyLaserSystem : MonoBehaviour
 
     private void Update()
     {
-        //enemy = GetComponent<Enemy>();
+        enemy.Agent = Agent.GetComponent<NavMeshAgent>();
+        Target = enemy.GetClosestPlayer();
         MyInput();
 
         // Look at Player
-        
-        transform.parent.LookAt(Enemy.Target.transform);
-        Debug.Log(name + "Look: " + Enemy.Target.name);
+
+        transform.parent.LookAt(Target.transform);
+        Debug.Log(name + "Look: " + Target.name);
         // SetText
         //text.SetText(bulletsLeft + " / " + magazineSize);
     }
@@ -103,7 +111,7 @@ public class EnemyLaserSystem : MonoBehaviour
         float y = Random.Range(-spread, spread);
 
         // Calculate Direction with Spread
-        Vector3 direction = (Enemy.Target.transform.position - transform.position) + new Vector3(x, y, 0);
+        Vector3 direction = (Target.transform.position - transform.position) + new Vector3(x, y, 0);
 
         // RayCast
         Debug.DrawRay(transform.position, direction);

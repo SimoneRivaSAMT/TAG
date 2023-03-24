@@ -5,65 +5,72 @@ using TMPro;
 
 public class LaserSystem : MonoBehaviour
 {
-    // Laser stats
+    // Private Variables
+    private InputManager inputManager;
+    private DualSensePresets dualSensePresets;
+    private RaycastHit rayHit;
+
+    [Header("Laser Stats")]
     public int damage;
-    public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
+    public float timeEachBurst, spread, range, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
-    private int bulletsLeft, bulletsShot;
-
-    // Bools
+    private int lasersLeft, lasersShot;
     private bool shooting, readyToShoot, reloading;
 
-    //References
-    public Camera fpsCam;
+    [Header("References")]
     public GameObject player;
-    //public Transform attackPoint;
-    public RaycastHit rayHit;
-    public LayerMask whatIsEnemy;
+    public Camera fpsCam;
     public GameObject laserEffect;
-
+    public TextMeshProUGUI ammoText;
+    public CameraShake camShake;
+    [Header("Cam Shake Stats")]
+    public float camShakeMagnitude, camShakeDuration;
     // Graphics
     //public GameObject muzzleFlash, bulletHoleGraphic; //https://assetstore.unity.com/packages/vfx/particles/legacy-particle-pack-73777#publisher
-    public CameraShake camShake;
-    public float camShakeMagnitude, camShakeDuration;
-    public TextMeshProUGUI text;
 
-    // InputManager
-    private InputManager inputManager;
 
     private void Awake()
     {
         inputManager = player.GetComponent<InputManager>();
-        bulletsLeft = magazineSize;
+        dualSensePresets = new DualSensePresets(player);
+
+        lasersLeft = magazineSize;
         readyToShoot = true;
         laserEffect.SetActive(false);
+        dualSensePresets.TouchPadColor(1, 0, 1);
+        dualSensePresets.LeftShield();
     }
 
     private void Update()
     {
+
+        if (lasersLeft == 0 || reloading)
+            dualSensePresets.RightEmpty();
+        else
+            dualSensePresets.RightSMG();
+
         MyInput();
 
-        // SetText
-        text.SetText(bulletsLeft + " / " + magazineSize);
+        // Set Ammo Text
+        ammoText.SetText(lasersLeft + " / " + magazineSize);
     }
 
     private void MyInput()
     {
         if (allowButtonHold)
-            //shooting = Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.JoystickButton7);
             shooting = inputManager.onAction.Tag.IsPressed();
         else
-            //shooting = Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.JoystickButton7);
             shooting = inputManager.onAction.Tag.triggered;
 
-        if (inputManager.onAction.Reload.triggered && bulletsLeft < magazineSize && !reloading) 
+        // Reloading
+        if (inputManager.onAction.Reload.triggered && lasersLeft < magazineSize && !reloading) 
             Reload();
 
         // Shoot 
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
+        if (readyToShoot && shooting && !reloading && lasersLeft > 0)
         {
-            bulletsShot = bulletsPerTap;
+            lasersShot = bulletsPerTap;
             Shoot();
         }
     }
@@ -73,26 +80,22 @@ public class LaserSystem : MonoBehaviour
         readyToShoot = false;
 
         // Spread
-        /*if (rigidbody.velocity.magnitude > 0)
-            spread *= 1.5f
-        else
-            spread = default spread*/
         float x = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
 
         // Calculate Direction with Spread
         Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
         
-        // RayCast
-        if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
+        // Check what's in front using RayCast
+        if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range))
         {
-            Debug.Log(rayHit.collider.name);
-
+            // If it's another player/AI deal damage
             if (rayHit.collider.CompareTag("Enemy") || rayHit.collider.CompareTag("Player"))
             {
-                Debug.Log("You tagged someone");
                 rayHit.collider.GetComponent<PlayerHealth>().TakeDamage(damage);
-            }else if (rayHit.collider.CompareTag("Shield"))
+            }
+            // If you hit a shield than it turns red
+            else if (rayHit.collider.CompareTag("Shield"))
             {
                 StartCoroutine(rayHit.collider.GetComponent<ShieldMaterial>().changeMaterial());
             }
@@ -104,14 +107,18 @@ public class LaserSystem : MonoBehaviour
         // Graphics - need particles
         //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         //Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+
+        // Display laser effect briefly
         StartCoroutine(LaserEffect());
 
-        bulletsLeft--;
-        bulletsShot--;
+        lasersLeft--;
+        lasersShot--;
 
-        Invoke("ResetShot", timeBetweenShooting);
+        // If it's burst then allow more shots
+        Invoke("ResetShot", timeEachBurst);
 
-        if (bulletsShot > 0 && bulletsLeft > 0)
+        // Keep on shooting after small period
+        if (lasersShot > 0 && lasersLeft > 0)
             Invoke("Shoot", timeBetweenShots);
     }
 
@@ -128,14 +135,14 @@ public class LaserSystem : MonoBehaviour
 
     private void ReloadFinished()
     {
-        bulletsLeft = magazineSize;
+        lasersLeft = magazineSize;
         reloading = false;
     }
 
     private IEnumerator LaserEffect()
     {
         laserEffect.SetActive(true);
-        yield return new WaitForSeconds(timeBetweenShooting / 2);
+        yield return new WaitForSeconds(timeEachBurst / 2);
         laserEffect.SetActive(false);
         yield break;
     }
