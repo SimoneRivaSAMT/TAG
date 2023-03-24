@@ -5,6 +5,8 @@ using TMPro;
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
+using System.Net;
+using System.Net.Sockets;
 
 /*
  Script che gestisce il menu. PER OGNI PLAYERPREFS USARE UN ENUM
@@ -13,17 +15,15 @@ public class StartGame : MonoBehaviour
 {
     public TMP_InputField ipAddressInput;
     public TMP_InputField usernameInput;
-
+    public const int WWW_PORT = 8181; //da mettere nelle costanti comuni poi
+    public string BASE_URL = "http://localhost:" + WWW_PORT + "/tag_www/";
+    private string jsonlobbies;
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
     }
 
-    public void GetLobbies()
-    {
-        StartCoroutine(GetLobbiesFromDb());
-    }
 
     public void StartAsHost()
     {
@@ -43,7 +43,7 @@ public class StartGame : MonoBehaviour
             ipAddressInput.image.color = Color.red;
         }
     }
-
+    
     private bool IsValidIP(string Address)
     {
         //Match pattern for IP address    
@@ -60,14 +60,41 @@ public class StartGame : MonoBehaviour
             return check.IsMatch(Address, 0);
     }
 
+    private static string GetLocalIPAddress()
+    {
+        var host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (var ip in host.AddressList)
+        {
+            if (ip.AddressFamily == AddressFamily.InterNetwork)
+            {
+                return ip.ToString();
+            }
+        }
+        throw new System.Exception("No network adapters with an IPv4 address in the system!");
+    }
+
+
+
     private IEnumerator AddLobbyOnDb()
     {
+        //Non funziona con il Proxy, da sistemare
+
+        //UnityWebRequest getIp = UnityWebRequest.Post("https://api.ipify.org", new WWWForm());
+        //yield return getIp.SendWebRequest();
+        //if(getIp.result != UnityWebRequest.Result.Success)
+        //{
+        //    Debug.LogError("getIp error! " + getIp.error.ToString() + " url: " + getIp.url);
+        //    StopCoroutine(AddLobbyOnDb());
+        //}
+        //string myIp = getIp.downloadHandler.text;
+
+        string myIp = GetLocalIPAddress();
         WWWForm form = new WWWForm();
-        string myIp = new System.Net.WebClient().DownloadString("https://api.ipify.org");
+
         form.AddField("username", usernameInput.text.Length > 0 ? usernameInput.text.ToString() : "no_name");
         form.AddField("ip_address", myIp);
         form.AddField("action", "add-lobby");
-        UnityWebRequest www = UnityWebRequest.Post("http://localhost/tag_www/app/vacant_match.php", form);
+        UnityWebRequest www = UnityWebRequest.Post(BASE_URL + "app/vacant_match.php", form);
         yield return www.SendWebRequest();
         if(www.result == UnityWebRequest.Result.Success)
         {
@@ -76,23 +103,9 @@ public class StartGame : MonoBehaviour
         }
         else
         {
-            Debug.LogError("www error! " + www.error.ToString());
+            Debug.LogError("www error! " + www.error.ToString() + " url: " + www.url);
         }
     }
 
-    private IEnumerator GetLobbiesFromDb()
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("action", "get-lobbies");
-        UnityWebRequest www = UnityWebRequest.Post("http://localhost/tag_www/app/vacant_match.php", form);
-        yield return www.SendWebRequest();
-        if (www.result == UnityWebRequest.Result.Success)
-        {
-            Debug.Log(www.downloadHandler.text);
-        }
-        else
-        {
-            Debug.LogError("www error! " + www.error.ToString());
-        }
-    }
+    
 }
