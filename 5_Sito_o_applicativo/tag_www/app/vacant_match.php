@@ -11,16 +11,15 @@ if(isset($_POST['action'])){
         $stmt->bind_param("ss", $username, $ip);
         $stmt->execute();
     }else if($action == "get-lobbies"){
-        $query = "SELECT `username`, `ip_address` FROM `vacant_match`";
+        $query = "SELECT `id`, `username`, `ip_address` FROM `vacant_match`";
         $stmt = $conn->prepare($query);
         $stmt->execute();
-        $res = $stmt->bind_result($usr, $ipAddr);
-        $json = "{";
+        $res = $stmt->bind_result($id, $usr, $ipAddr);
+        $json = "";
         while ($stmt->fetch()){
-            $json .= "{username: $usr, ip_address: $ipAddr},";
+            $json .= "{\"Id\": \"$id\", \"Nickname\": \"$usr\", \"IpAddress\": \"$ipAddr\"};";
         }
         $json = substr($json, 0, -1);
-        $json .= "}";
         echo $json;
     }
 }else{
