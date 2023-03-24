@@ -1,17 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerLook : MonoBehaviour
 {
-    public Camera cam;
     private float xRotation = 0f;
+    private float xSensitivity;
+    private float ySensitivity;
 
-    public float xSensitivity = 30f;
-    public float ySensitivity = 30f;
+    public Camera cam;
     
-    public void ProcessLook(Vector2 input)
+    public float defaultXSensitivity = 30f;
+    public float defaultYSensitivity = 30f;
+    
+    public void ProcessLook(Vector2 input, bool isGamepad) 
     {
+        if (isGamepad)
+        {
+            xSensitivity = defaultXSensitivity * 10;
+            ySensitivity = defaultYSensitivity * 10;
+        }
+        else
+        {
+            xSensitivity = defaultXSensitivity;
+            ySensitivity = defaultYSensitivity;
+        }
+        
+
         float mouseX = input.x;
         float mouseY = input.y;
         // Calculate camera rotation for looking up and down

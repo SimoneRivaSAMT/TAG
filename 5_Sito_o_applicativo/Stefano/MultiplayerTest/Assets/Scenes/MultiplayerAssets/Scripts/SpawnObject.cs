@@ -4,6 +4,10 @@ using UnityEngine;
 using Unity.Netcode;
 using System;
 
+/*
+ Script che gestisce lo spawn degli oggetti. potrebbe NON servire
+ */
+
 public class SpawnObject : NetworkBehaviour
 {
     private GameObjectsContainer gameObjectsContainer;

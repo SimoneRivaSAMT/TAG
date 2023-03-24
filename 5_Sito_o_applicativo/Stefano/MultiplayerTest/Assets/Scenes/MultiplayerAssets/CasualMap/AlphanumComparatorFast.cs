@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Assets.CasualMap
 {
+    /*
+     Questo server per ordinare gli array per nome alfanumericamente
+     */
     public class AlphanumComparatorFast : IComparer<string>
     {
         public int Compare(string x, string y)

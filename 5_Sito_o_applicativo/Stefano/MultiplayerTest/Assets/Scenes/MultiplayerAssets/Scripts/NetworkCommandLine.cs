@@ -7,6 +7,10 @@ using System.Net;
 using System.Net.Sockets;
 using TMPro;
 
+/*
+ Non in uso
+ */
+
 public class NetworkCommandLine : MonoBehaviour
 {
 

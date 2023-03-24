@@ -57,8 +57,9 @@ public class PlayerInteract : NetworkBehaviour
         {
             if (hitInfo.collider.CompareTag("Player"))
             {
-                ulong net = hitInfo.collider.gameObject.GetComponent<NetworkObject>().NetworkObjectId;   
-                damageManager.PlayerHittedServerRpc(net);
+                ulong net = hitInfo.collider.gameObject.GetComponent<NetworkObject>().NetworkObjectId;
+                ulong myNetId = GetComponent<NetworkObject>().NetworkObjectId;
+                damageManager.PlayerHittedServerRpc(net, myNetId);
                 Debug.LogError("Ho colpito il player " + net);
             }
         }

@@ -32,7 +32,6 @@ public class SettingsManager : MonoBehaviour
         volumeSlider.value = defVolume;
         sensXSlider.value = defSensX;
         sensYSlider.value = defSensY;
-        Debug.Log(PlayerPrefs.GetInt(PlayerPreference.SETTINGS_DISPLAY) + " " + PlayerPrefs.GetInt(PlayerPreference.SETTINGS_GRAPHICS));
     }
 
     void Update()

@@ -6,6 +6,10 @@ using Unity.Collections;
 using Newtonsoft.Json;
 using System.Linq;
 
+/*
+ Script che server al host di gestire i player connessi
+ */
+
 public class PlayersManagement : NetworkBehaviour
 {
     private IDictionary<ulong, GameObject> players;
@@ -29,7 +33,7 @@ public class PlayersManagement : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void ClientConnectedServerRpc(ulong clientId)
+    public void ClientConnectedServerRpc(ulong clientId) //il player si è connesso
     {
         GameObject[] rawList = GameObject.FindGameObjectsWithTag("Player");
         GameObject clientObj = null;
@@ -81,10 +85,11 @@ public class PlayersManagement : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void ClientDisconnectedServerRpc(ulong clientId, bool serverCrashed)
+    public void ClientDisconnectedServerRpc(ulong clientId, bool serverCrashed) //client disconnesso
     {
+        if (!IsOwner)
+            return;
         Debug.Log("Client disconnected, id: " + clientId);
-        
         if (!serverCrashed)
         {
             players.Remove(clientId);

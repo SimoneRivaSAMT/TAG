@@ -4,6 +4,9 @@ using UnityEngine;
 using Unity.Netcode;
 using TMPro;
 
+/*
+ Script che gestisce il lifetime del server
+ */
 public class ServerLife : NetworkBehaviour
 {
     private NetworkVariable<float> timePast;
