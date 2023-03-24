@@ -11,6 +11,7 @@ namespace Assets.Scenes
         howToPlay = 2,
         settings = 3,
         lobby = 4,
-        createLobby = 5
+        createLobby = 5,
+        matchHistory = 6
     }
 }

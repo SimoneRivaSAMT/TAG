@@ -47,7 +47,7 @@ public class UIButtonManager : MonoBehaviour
         while (currentDeltaX < sizeDeltaX && !isShrinking)
         {
             currentDeltaX = image.rectTransform.sizeDelta.x;
-            float tmp = currentDeltaX + 2;
+            float tmp = currentDeltaX + 6;
             image.rectTransform.sizeDelta = new Vector2(tmp, 10);
             yield return new WaitForSeconds(.0001f);
         }
@@ -61,7 +61,7 @@ public class UIButtonManager : MonoBehaviour
         while (currentDeltaX > 0 && !isExpanding)
         {
             currentDeltaX = image.rectTransform.sizeDelta.x;
-            float tmp = currentDeltaX - 2;
+            float tmp = currentDeltaX - 6;
             image.rectTransform.sizeDelta = new Vector2(tmp, 10);
             yield return new WaitForSeconds(.0001f);
         }

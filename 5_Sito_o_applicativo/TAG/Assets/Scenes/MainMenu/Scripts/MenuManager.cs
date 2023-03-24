@@ -86,6 +86,11 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene((int)SceneToId.howToPlay);
     }
 
+    public void ViewMatchHistory()
+    {
+        SceneManager.LoadScene((int)SceneToId.matchHistory);
+    }
+
     public void ExitGame()
     {
         PlayerPrefs.DeleteAll();
