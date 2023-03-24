@@ -21,6 +21,7 @@ public class CreateManager : MonoBehaviour
         
         if (text.text.Length > 0 && !string.IsNullOrWhiteSpace(text.text))
         {
+            Debug.Log(lobbyName);
             button.GetComponent<Button>().enabled = true;
             cb.normalColor = Color.white;
             cb.selectedColor = Color.white;
@@ -28,6 +29,7 @@ public class CreateManager : MonoBehaviour
             cb.pressedColor = Color.white;
             cb.highlightedColor = Color.white;
             button.GetComponent<Button>().colors = cb;
+            SanizizeString();
 
         }
         else
@@ -45,5 +47,4 @@ public class CreateManager : MonoBehaviour
         lobbyName.Replace(" ", "_");        
         Debug.Log(lobbyName);
     }
-
 }

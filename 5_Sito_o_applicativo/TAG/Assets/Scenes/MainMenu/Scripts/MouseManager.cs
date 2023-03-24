@@ -13,6 +13,7 @@ public class MouseManager : MonoBehaviour
     void Awake()
     {
         bg = GetComponent<Image>();
+        UnityEngine.Cursor.visible = false;
     }
 
     public void OnPointerEnter(PointerEventData data)
@@ -22,6 +23,6 @@ public class MouseManager : MonoBehaviour
 
     void OnMouseExit()
     {
-        Debug.Log("Il mouse non è più su GameObject .");
+        Debug.Log("Il mouse non ï¿½ piï¿½ su GameObject .");
     }
 }

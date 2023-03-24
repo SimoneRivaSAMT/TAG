@@ -644,6 +644,7 @@ RectTransform:
   - {fileID: 1826367441}
   - {fileID: 1180543693}
   - {fileID: 1457186381}
+  - {fileID: 1527667597}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1257,6 +1258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a276765f7b699584fb82766589eccec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 1239824579}
+  button: {fileID: 1253868030}
 --- !u!1 &1437938457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,9 +1535,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 913133135}
-  - {fileID: 1253868031}
+  m_Children: []
   m_Father: {fileID: 1111126770}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
