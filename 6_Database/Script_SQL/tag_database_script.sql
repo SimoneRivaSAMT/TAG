@@ -30,6 +30,11 @@ CREATE TABLE `plays`(
 
 CREATE TABLE vacant_match(
 	id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
     ip_address VARCHAR(15) UNIQUE,
     username VARCHAR(50)
 );
+
+INSERT INTO user(nickname, email, password) VALUES ('simmi', 'a', 'a');
+INSERT INTO user(nickname, email, password) VALUES ('maicol', 'b', 'a');
+INSERT INTO user(nickname, email, password) VALUES ('stik', 'c', 'a');

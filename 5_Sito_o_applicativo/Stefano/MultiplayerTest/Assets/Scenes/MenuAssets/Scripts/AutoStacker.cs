@@ -27,7 +27,7 @@ public class AutoStacker : MonoBehaviour
         RectTransform[] tmpArrayGo = container.GetComponentsInChildren<RectTransform>();
         foreach (RectTransform transform in tmpArrayGo)
         {
-            if (transform.gameObject.name.Contains("LobbyTemplate"))
+            if (transform.gameObject.name.Equals("LobbyTemplate(Clone)"))
             {
                 elements.Add(transform.gameObject);
                 Debug.Log("nome: " + transform.gameObject.name);
@@ -49,6 +49,17 @@ public class AutoStacker : MonoBehaviour
             RectTransform secondRt = second.GetComponent<RectTransform>();
             secondRt.offsetMax = new Vector2(0, firstRt.offsetMax.y - firstRt.rect.height);
             secondRt.offsetMin = new Vector2(0, firstRt.offsetMin.y - firstRt.rect.height);
+            Debug.Log("offset");
         }
+    }
+
+    public void RemoveAllRows()
+    {
+        actualChildren = 0;
+        foreach (GameObject item in elements)
+        {
+            Destroy(item);
+        }
+        elements.Clear();
     }
 }

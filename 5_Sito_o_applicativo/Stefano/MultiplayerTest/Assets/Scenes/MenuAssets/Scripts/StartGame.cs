@@ -13,9 +13,8 @@ using System.Net.Sockets;
  */
 public class StartGame : MonoBehaviour
 {
-    public TMP_InputField ipAddressInput;
     public TMP_InputField usernameInput;
-    public const int WWW_PORT = 8181; //da mettere nelle costanti comuni poi
+    public const int WWW_PORT = 8080; //da mettere nelle costanti comuni poi
     public string BASE_URL = "http://localhost:" + WWW_PORT + "/tag_www/";
     private string jsonlobbies;
     private void Start()
@@ -30,20 +29,15 @@ public class StartGame : MonoBehaviour
         StartCoroutine(AddLobbyOnDb());
     }
 
-    public void StartAsClient()
+    public void StartAsClient(string ipAddress = "")
     {
-        if(IsValidIP(ipAddressInput.text))
-        {
-            PlayerPrefs.SetString("multiplayerMode", "client");
-            PlayerPrefs.SetString("connectIp", ipAddressInput.text);
-            SceneManager.LoadScene(1);
-        }
-        else
-        {
-            ipAddressInput.image.color = Color.red;
-        }
+
+        PlayerPrefs.SetString("multiplayerMode", "client");
+        PlayerPrefs.SetString("connectIp", ipAddress);
+        SceneManager.LoadScene(1);
+
     }
-    
+
     private bool IsValidIP(string Address)
     {
         //Match pattern for IP address    
@@ -93,8 +87,8 @@ public class StartGame : MonoBehaviour
 
         form.AddField("username", usernameInput.text.Length > 0 ? usernameInput.text.ToString() : "no_name");
         form.AddField("ip_address", myIp);
-        form.AddField("action", "add-lobby");
-        UnityWebRequest www = UnityWebRequest.Post(BASE_URL + "app/vacant_match.php", form);
+        form.AddField("user_id", PlayerPrefs.GetInt("user_id"));
+        UnityWebRequest www = UnityWebRequest.Post(BASE_URL + "matchManager/manageVacant/addLobby", form);
         yield return www.SendWebRequest();
         if(www.result == UnityWebRequest.Result.Success)
         {

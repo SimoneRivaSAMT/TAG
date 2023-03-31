@@ -158,4 +158,9 @@ public class DamageManager : NetworkBehaviour
         playerLives[2].text = p3Life.Value + "";
         playerLives[3].text = p4Life.Value + "";
     }
+
+    private IEnumerator UpdateScoresOnDb()
+    {
+        yield return null;
+    }
 }

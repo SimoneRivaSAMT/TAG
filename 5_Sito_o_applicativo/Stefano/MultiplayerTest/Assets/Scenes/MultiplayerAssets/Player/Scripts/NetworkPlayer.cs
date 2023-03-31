@@ -94,4 +94,6 @@ public class NetworkPlayer : NetworkBehaviour
             NetworkManager.Singleton.Shutdown();
         }
     }
+
+    
 }
