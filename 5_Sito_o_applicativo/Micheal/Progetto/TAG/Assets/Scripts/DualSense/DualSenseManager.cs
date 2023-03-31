@@ -6,7 +6,7 @@ using UnityEngine;
 public class DualSenseManager : MonoBehaviour
 {
     private DualSenseTrigger trigger;
-    private DualSenseTouchpadColor TouchpadColor;
+    private DualSenseTouchpadColor touchpadColor;
     private DualSenseRumble rumble;
 
     public enum TriggerEffectType
@@ -93,7 +93,7 @@ public class DualSenseManager : MonoBehaviour
     void Start()
     {
         trigger = GetComponent<DualSenseTrigger>();
-        TouchpadColor = GetComponent<DualSenseTouchpadColor>();
+        touchpadColor = GetComponent<DualSenseTouchpadColor>();
         rumble = GetComponent<DualSenseRumble>();
 
         StartCoroutine(UpdateController());
@@ -104,9 +104,9 @@ public class DualSenseManager : MonoBehaviour
     void Update()
     {
         // Touchpad Color
-        TouchpadColor.UpdateRedColor(red);
-        TouchpadColor.UpdateGreenColor(green);
-        TouchpadColor.UpdateBlueColor(blue);
+        touchpadColor.UpdateRedColor(red);
+        touchpadColor.UpdateGreenColor(green);
+        touchpadColor.UpdateBlueColor(blue);
     }
 
     

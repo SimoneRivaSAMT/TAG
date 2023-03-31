@@ -5,27 +5,16 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    private StateMachine stateMachine;
     private NavMeshAgent agent;
     public NavMeshAgent Agent { get => agent; set => agent = value; }
-    //public Transform Target;
-
-    //Just for debugging purposes
-    [SerializeField]
-    private string currentState;
-    //public float remainingDistance = 8f;
 
     [HideInInspector]
     public GameObject Target;
 
-    public Path path;
-
     // Start is called before the first frame update
     void Start()
     {
-        stateMachine = GetComponent<StateMachine>();
         agent = GetComponent<NavMeshAgent>();
-        //stateMachine.Initialise(); // 
         Target = GetClosestPlayer();
         agent.destination = Target.transform.position;
     }
@@ -35,7 +24,6 @@ public class Enemy : MonoBehaviour
     {
         Target = GetClosestPlayer();
         agent.destination = Target.transform.position;
-        Debug.Log(name + "Pos: " + Target.name + ": " + agent.destination);
     }
 
     public GameObject GetClosestPlayer()

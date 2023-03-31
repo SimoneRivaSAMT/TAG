@@ -838,6 +838,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeLaser"",
+                    ""type"": ""Button"",
+                    ""id"": ""e876df67-3114-40d4-a9a4-ee9424da7ca0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -928,6 +937,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""51b2c9f6-37bd-4be3-9c2c-312bddee93a2"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeLaser"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c938f3ce-260f-41a6-854f-9f481cdc54ba"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeLaser"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -960,6 +991,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_OnAction_Tag = m_OnAction.FindAction("Tag", throwIfNotFound: true);
         m_OnAction_Shield = m_OnAction.FindAction("Shield", throwIfNotFound: true);
         m_OnAction_Reload = m_OnAction.FindAction("Reload", throwIfNotFound: true);
+        m_OnAction_ChangeLaser = m_OnAction.FindAction("ChangeLaser", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1201,6 +1233,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_OnAction_Tag;
     private readonly InputAction m_OnAction_Shield;
     private readonly InputAction m_OnAction_Reload;
+    private readonly InputAction m_OnAction_ChangeLaser;
     public struct OnActionActions
     {
         private @PlayerInput m_Wrapper;
@@ -1209,6 +1242,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Tag => m_Wrapper.m_OnAction_Tag;
         public InputAction @Shield => m_Wrapper.m_OnAction_Shield;
         public InputAction @Reload => m_Wrapper.m_OnAction_Reload;
+        public InputAction @ChangeLaser => m_Wrapper.m_OnAction_ChangeLaser;
         public InputActionMap Get() { return m_Wrapper.m_OnAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1230,6 +1264,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Reload.started -= m_Wrapper.m_OnActionActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_OnActionActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_OnActionActionsCallbackInterface.OnReload;
+                @ChangeLaser.started -= m_Wrapper.m_OnActionActionsCallbackInterface.OnChangeLaser;
+                @ChangeLaser.performed -= m_Wrapper.m_OnActionActionsCallbackInterface.OnChangeLaser;
+                @ChangeLaser.canceled -= m_Wrapper.m_OnActionActionsCallbackInterface.OnChangeLaser;
             }
             m_Wrapper.m_OnActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -1246,6 +1283,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
+                @ChangeLaser.started += instance.OnChangeLaser;
+                @ChangeLaser.performed += instance.OnChangeLaser;
+                @ChangeLaser.canceled += instance.OnChangeLaser;
             }
         }
     }
@@ -1278,5 +1318,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnTag(InputAction.CallbackContext context);
         void OnShield(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnChangeLaser(InputAction.CallbackContext context);
     }
 }

@@ -4,48 +4,90 @@ using UnityEngine;
 
 public class DualSensePresets
 {
-    private DualSenseManager dualSenseManager;
+    private DualSenseManager dsm;
     public DualSensePresets(GameObject player)
     {
-        dualSenseManager = player.GetComponent<DualSenseManager>();
+        dsm = player.GetComponent<DualSenseManager>();
     }
 
-    public void LeftShield()
+    public void SelectLeftShield()
     {
-        dualSenseManager.leftEffectType = DualSenseManager.TriggerEffectType.continuousResistance;
-        dualSenseManager.leftContinuousStartPosition = 0;
-        dualSenseManager.leftContinuousForce = 0.5f;
-        dualSenseManager.leftSectionStartPosition = 0.15f;
-        dualSenseManager.leftSectionEndPosition = 0.5f;
+        ResetLeftTriggers();
+        dsm.leftEffectType = DualSenseManager.TriggerEffectType.continuousResistance;
+
+        dsm.leftContinuousForce = 0.5f;
+
+        dsm.leftSectionStartPosition = 0.15f;
+        dsm.leftSectionEndPosition = 0.5f;
     }
-    public void RightEmpty()
+    public void SelectRightEmpty()
     {
-        dualSenseManager.rightEffectType = DualSenseManager.TriggerEffectType.sectionResistance;
-        dualSenseManager.rightSectionStartPosition = 0;
-        dualSenseManager.rightSectionEndPosition = 0.3f;
-        dualSenseManager.rightEffectStartPosition = 0;
-        dualSenseManager.rightEffectBeginForce = 0;
-        dualSenseManager.rightEffectMiddleForce = 0;
-        dualSenseManager.rightEffectEndForce = 0;
-        dualSenseManager.rightEffectFrequency = 0;
+        ResetRightTriggers();
+        dsm.rightEffectType = DualSenseManager.TriggerEffectType.sectionResistance;
+
+        dsm.rightSectionEndPosition = 0.3f;
     }
 
-    public void RightSMG()
+    public void SelectRightSMG()
     {
-        dualSenseManager.rightEffectType = DualSenseManager.TriggerEffectType.effectResistance;
-        dualSenseManager.rightSectionStartPosition = 0.3f;
-        dualSenseManager.rightSectionEndPosition = 0.7f;
-        dualSenseManager.rightEffectStartPosition = 0;
-        dualSenseManager.rightEffectBeginForce = 0.5f;
-        dualSenseManager.rightEffectMiddleForce = 0.75f;
-        dualSenseManager.rightEffectEndForce = 1f;
-        dualSenseManager.rightEffectFrequency = 0.075f;
+        ResetRightTriggers();
+        dsm.rightEffectType = DualSenseManager.TriggerEffectType.effectResistance;
+
+        dsm.rightSectionStartPosition = 0.3f;
+        dsm.rightSectionEndPosition = 0.7f;
+
+        dsm.rightEffectBeginForce = 0.5f;
+        dsm.rightEffectMiddleForce = 0.75f;
+        dsm.rightEffectEndForce = 1f;
+        dsm.rightEffectFrequency = 0.05f;
     }
 
-    public void TouchPadColor(float r, float g, float b)
+    public void SelectRightShotgun()
     {
-        dualSenseManager.red = r;
-        dualSenseManager.green = g;
-        dualSenseManager.blue = b;
+        ResetRightTriggers();
+        dsm.rightEffectType = DualSenseManager.TriggerEffectType.sectionResistance;
+
+        dsm.rightSectionStartPosition = 0.2f;
+        dsm.rightSectionEndPosition = 0.5f;
+        dsm.rightSectionForce = 0.3f;
+    }
+
+    public void SetTouchPadColor(float r, float g, float b)
+    {
+        dsm.red = r;
+        dsm.green = g;
+        dsm.blue = b;
+    }
+
+    public void ResetRightTriggers()
+    {
+        dsm.rightContinuousForce = 0;
+        dsm.rightContinuousStartPosition = 0;
+
+        dsm.rightSectionStartPosition = 0;
+        dsm.rightSectionEndPosition = 0;
+        dsm.rightSectionForce = 0;
+
+        dsm.rightEffectStartPosition = 0;
+        dsm.rightEffectBeginForce = 0;
+        dsm.rightEffectMiddleForce = 0;
+        dsm.rightEffectEndForce = 0;
+        dsm.rightEffectFrequency = 0;
+    }
+
+    public void ResetLeftTriggers()
+    {
+        dsm.leftContinuousForce = 0;
+        dsm.leftContinuousStartPosition = 0;
+
+        dsm.leftSectionStartPosition = 0;
+        dsm.leftSectionEndPosition = 0;
+        dsm.leftSectionForce = 0;
+
+        dsm.leftEffectStartPosition = 0;
+        dsm.leftEffectBeginForce = 0;
+        dsm.leftEffectMiddleForce = 0;
+        dsm.leftEffectEndForce = 0;
+        dsm.leftEffectFrequency = 0;
     }
 }
