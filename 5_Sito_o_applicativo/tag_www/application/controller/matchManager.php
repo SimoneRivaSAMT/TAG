@@ -3,7 +3,7 @@
 class matchManager
 {
     public function index() : void{
-        echo "You have not specified a method and action";
+
     }
 
     public function manageVacant($action) : void{
@@ -29,8 +29,6 @@ class matchManager
                 }
                 $json = substr($json, 0, -1);
                 echo $json;
-            }else{
-                echo "Action not found";
             }
         }
     }

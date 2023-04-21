@@ -14,8 +14,7 @@ using System.Net.Sockets;
 public class StartGame : MonoBehaviour
 {
     public TMP_InputField usernameInput;
-    public const int WWW_PORT = 8080; //da mettere nelle costanti comuni poi
-    public string BASE_URL = "http://localhost:" + WWW_PORT + "/tag_www/";
+    public string BASE_URL;
     private string jsonlobbies;
     private void Start()
     {

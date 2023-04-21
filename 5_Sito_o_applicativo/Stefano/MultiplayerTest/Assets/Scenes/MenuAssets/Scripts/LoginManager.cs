@@ -47,7 +47,12 @@ public class LoginManager : MonoBehaviour
         if (loginRequest.result == UnityWebRequest.Result.Success)
         {
             login_json = loginRequest.downloadHandler.text;
+            print(login_json);
             UnlockGame();
+        }
+        else
+        {
+            Debug.LogError("Error: " + loginRequest.error + " // URL: " + loginRequest.url);
         }
     }
 }

@@ -23,7 +23,7 @@ public class SignupManager : MonoBehaviour
         form.AddField("user_nickname", nick.text);
         form.AddField("user_password", pass.text);
         form.AddField("user_email", email.text);
-        signupRequest = UnityWebRequest.Post(FindObjectOfType<StartGame>().BASE_URL + "userManager/signup", form);
+        signupRequest = UnityWebRequest.Post(FindObjectOfType<StartGame>().BASE_URL + "userManager/signup/", form);
         yield return signupRequest.SendWebRequest();
         if(signupRequest.result == UnityWebRequest.Result.Success)
         {
@@ -33,9 +33,13 @@ public class SignupManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Missing parameters");
+                Debug.Log(signupRequest.downloadHandler.text);
             }
-            
+
+        }
+        else
+        {
+            Debug.LogError("Error: " + signupRequest.error + " // URL: " + signupRequest.url);
         }
     }
 }

@@ -1,0 +1,1 @@
+<h1>Hi! Why are you here? We have not a website... or maybe yes :)</h1>
