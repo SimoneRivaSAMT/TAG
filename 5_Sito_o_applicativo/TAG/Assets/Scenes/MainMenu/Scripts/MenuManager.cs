@@ -14,6 +14,8 @@ public class MenuManager : MonoBehaviour
     public GameObject introObj;
     public int introDuration;
 
+    public bool isMainMenu;
+
     [Header("Privacy")]
     public GameObject privacyObj;
     public GameObject acceptButton;
@@ -21,6 +23,9 @@ public class MenuManager : MonoBehaviour
     private bool privacyAccepted = false;
     private InputManager inputManager;
     private int id;
+
+    [Header("Game Objects")]
+    public GameObject cursor;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void OnBeforeSceneLoadRuntimeMethod() //viene eseguito solo all'avvio del gioco
@@ -31,6 +36,8 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        if(isMainMenu)
+            cursor.GetComponent<Image>().enabled = false;
         inputManager = FindObjectOfType<InputManager>();
         UpdatePrivacyState();
         Cursor.lockState = CursorLockMode.Confined;
@@ -142,6 +149,9 @@ public class MenuManager : MonoBehaviour
         menuObj.SetActive(true);
         introObj.SetActive(false);
         PlayerPrefs.SetInt(PlayerPreference.MENU_IS_FIRST_START, 0);
+        if(isMainMenu){
+            cursor.GetComponent<Image>().enabled = true;   
+        }
     }
 
     private IEnumerator LoadSceneAsync(int index)

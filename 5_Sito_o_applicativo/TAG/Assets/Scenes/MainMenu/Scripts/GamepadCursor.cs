@@ -38,16 +38,22 @@ public class GamepadCursor : MonoBehaviour
     private Mouse currentMouse;
     private Vector2 newPosition = new Vector2(0, 0);
     private UIButtonManager uiButton;
-
     private const string gamepadScheme = "Gamepad";
     private const string mouseScheme = "Keyboard&Mouse";
 
+    private bool status = false;
+
     private void Awake()
     {
+        newPosition = new Vector2(Screen.width/2, Screen.height/2);
         Cursor.SetCursor(default, newPosition, CursorMode.ForceSoftware);
         Cursor.visible = false;
         uiButton = GetComponent<UIButtonManager>();
     }
+
+    private void Start() {
+        InputState.Change(virtualMouse.position, newPosition);
+    }    
 
     private void Update()
     {
@@ -66,8 +72,7 @@ public class GamepadCursor : MonoBehaviour
     }
 
     private void OnEnable()
-    {
-        
+    {        
         mainCamera = Camera.main;
         currentMouse = Mouse.current;
 
@@ -109,13 +114,20 @@ public class GamepadCursor : MonoBehaviour
         }
 
         Vector2 deltaValue = Gamepad.current.leftStick.ReadValue();
-        deltaValue *= cursorSpeed * Time.deltaTime;
-
         Vector2 currentPosition = virtualMouse.position.ReadValue();
-        newPosition = currentPosition + deltaValue;
 
-        newPosition.x = Mathf.Clamp(newPosition.x, padding, Screen.width - padding);
-        newPosition.y = Mathf.Clamp(newPosition.y, padding, Screen.height - padding);
+        if(status){
+            
+            deltaValue *= cursorSpeed * Time.deltaTime;
+
+            
+            newPosition = currentPosition + deltaValue;
+
+        
+            newPosition.x = Mathf.Clamp(newPosition.x, padding, Screen.width - padding);
+            newPosition.y = Mathf.Clamp(newPosition.y, padding, Screen.height - padding);
+        }
+        
 
         InputState.Change(virtualMouse.position, newPosition);
         InputState.Change(virtualMouse.delta, deltaValue);
@@ -133,6 +145,7 @@ public class GamepadCursor : MonoBehaviour
         //transform.position = cursorPos;
 
         AnchorCursor(newPosition);
+        status = true;
     }
 
     private void AnchorCursor(Vector2 position)

@@ -18,14 +18,11 @@ public class SettingsManager : MonoBehaviour
     public float defVolume = 6;
     public float defSensX = 30;
     public float defSensY = 30;
-    private void Awake()
-    {
-        display.value = PlayerPrefs.GetInt(PlayerPreference.SETTINGS_DISPLAY);
-        graphic.value = PlayerPrefs.GetInt(PlayerPreference.SETTINGS_GRAPHICS);
-    }
 
     void Start()
     {
+        display.value = PlayerPrefs.GetInt(PlayerPreference.SETTINGS_DISPLAY);
+        graphic.value = PlayerPrefs.GetInt(PlayerPreference.SETTINGS_GRAPHICS);
         defVolume = PlayerPrefs.GetFloat(PlayerPreference.SETTINGS_VOLUME);
         defSensX = PlayerPrefs.GetFloat(PlayerPreference.SETTINGS_SENS_X);
         defSensY = PlayerPrefs.GetFloat(PlayerPreference.SETTINGS_SENS_Y);
@@ -42,10 +39,14 @@ public class SettingsManager : MonoBehaviour
         defVolume = volumeSlider.value;
         defSensX = sensXSlider.value;
         defSensY = sensYSlider.value;
+    }
+
+    public void Save(){
         PlayerPrefs.SetFloat(PlayerPreference.SETTINGS_VOLUME, defVolume);
         PlayerPrefs.SetFloat(PlayerPreference.SETTINGS_SENS_X, defSensX);
         PlayerPrefs.SetFloat(PlayerPreference.SETTINGS_SENS_Y, defSensY);
-        
+        PlayerPrefs.SetInt(PlayerPreference.SETTINGS_GRAPHICS, graphic.value);
+        PlayerPrefs.SetInt(PlayerPreference.SETTINGS_DISPLAY, display.value);
     }
 
     public void DefaultSettings()
@@ -56,12 +57,5 @@ public class SettingsManager : MonoBehaviour
         defVolume = volumeSlider.value;
         defSensX = sensXSlider.value;
         defSensY = sensYSlider.value;
-    }
-
-    public void DropdownValues()
-    {
-        PlayerPrefs.SetInt(PlayerPreference.SETTINGS_DISPLAY, display.value);
-        PlayerPrefs.SetInt(PlayerPreference.SETTINGS_GRAPHICS, graphic.value);
-        
     }
 }

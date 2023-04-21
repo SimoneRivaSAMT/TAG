@@ -511,8 +511,10 @@ MonoBehaviour:
   menuObj: {fileID: 1392057450}
   introObj: {fileID: 1605434464}
   introDuration: 36
+  isMainMenu: 1
   privacyObj: {fileID: 551188061}
   acceptButton: {fileID: 1108081894}
+  cursor: {fileID: 120843147}
 --- !u!114 &180911350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1672,7 +1674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 1876518411}
@@ -1886,7 +1888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1533430836}
     m_SelectOnDown: {fileID: 1280215022}
@@ -2218,7 +2220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1280215022}
     m_SelectOnDown: {fileID: 0}
@@ -3229,7 +3231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 814434137}
     m_SelectOnDown: {fileID: 1001080112}
@@ -4181,7 +4183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1876518411}
     m_SelectOnDown: {fileID: 814434137}
@@ -5007,7 +5009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 650094838}
     m_SelectOnDown: {fileID: 1533430836}
