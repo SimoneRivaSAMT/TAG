@@ -26,6 +26,10 @@ public class MenuManager : MonoBehaviour
 
     [Header("Game Objects")]
     public GameObject cursor;
+    public GameObject loginButton;
+    public GameObject logoutButton;
+    public GameObject playButton;
+    public GameObject playOfflineButton;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void OnBeforeSceneLoadRuntimeMethod() //viene eseguito solo all'avvio del gioco
@@ -36,8 +40,28 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        if(isMainMenu)
+        if (isMainMenu)
+        {
             cursor.GetComponent<Image>().enabled = false;
+
+            if (PlayerPrefs.HasKey(PlayerPreference.USER_ID))
+            {
+                logoutButton.SetActive(true);
+                loginButton.SetActive(false);
+
+                playButton.GetComponentInChildren<Button>().interactable = true;
+                playOfflineButton.GetComponentInChildren<Button>().interactable = true;
+            }
+            else
+            {
+                logoutButton.SetActive(false);
+                loginButton.SetActive(true);
+
+                playButton.GetComponentInChildren<Button>().interactable = false;
+                playOfflineButton.GetComponentInChildren<Button>().interactable = true;
+            }
+
+        }  
         inputManager = FindObjectOfType<InputManager>();
         UpdatePrivacyState();
         Cursor.lockState = CursorLockMode.Confined;

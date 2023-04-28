@@ -18,5 +18,12 @@ namespace Assets.PlayerPreferences
         public const string MENU_IS_FIRST_START = "FirstStart";
         public const string MENU_PRIVACY_ACCEPTED = "PrivacyAccepted";
         #endregion
+
+        #region LOGIN/SIGNUP
+        public const string USER_UNAME = "Login_UserName";
+        public const string USER_EMAIL = "Login_UserEmail";
+        public const string USER_PASS = "Login_UserPass";
+        public const string USER_ID = "Login_UserId";
+        #endregion
     }
 }
