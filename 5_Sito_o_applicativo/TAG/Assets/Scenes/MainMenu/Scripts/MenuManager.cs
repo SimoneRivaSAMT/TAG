@@ -98,6 +98,16 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene((int)SceneToId.matchHistory);
     }
 
+    public void SignIn()
+    {
+        SceneManager.LoadScene((int)SceneToId.signIn);
+    }
+
+    public void SignUp()
+    {
+        SceneManager.LoadScene((int)SceneToId.signUp);
+    }
+
     public void ExitGame()
     {
         PlayerPrefs.DeleteAll();

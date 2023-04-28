@@ -12,6 +12,8 @@ namespace Assets.Scenes
         settings = 3,
         lobby = 4,
         createLobby = 5,
-        matchHistory = 6
+        matchHistory = 6,
+        signIn = 7,
+        signUp = 8
     }
 }
