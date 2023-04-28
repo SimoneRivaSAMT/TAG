@@ -132,6 +132,11 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene((int)SceneToId.signUp);
     }
 
+    public void OfflineGame()
+    {
+        SceneManager.LoadScene((int)SceneToId.offlineGame);
+    }
+
     public void ExitGame()
     {
         PlayerPrefs.DeleteAll();

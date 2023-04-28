@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028338, g: 0.22571345, b: 0.30692208, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1258,9 +1258,9 @@ GameObject:
   - component: {fileID: 618341813}
   - component: {fileID: 618341812}
   - component: {fileID: 618341811}
-  - component: {fileID: 618341810}
   - component: {fileID: 618341816}
   - component: {fileID: 618341817}
+  - component: {fileID: 618341818}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1268,18 +1268,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &618341810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618341809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84b80074bc23ed448842089fb279590f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &618341811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1415,6 +1403,18 @@ MonoBehaviour:
   passw: {fileID: 1941096335}
   error: {fileID: 1634348700}
   passButton: {fileID: 85778493}
+--- !u!114 &618341818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618341809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ea2bc4a9a0096438e5cf5c4fb75caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &809693873
 GameObject:
   m_ObjectHideFlags: 0

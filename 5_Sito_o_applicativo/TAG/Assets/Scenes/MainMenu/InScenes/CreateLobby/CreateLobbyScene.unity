@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028338, g: 0.22571345, b: 0.30692208, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -554,9 +554,9 @@ GameObject:
   - component: {fileID: 1111126768}
   - component: {fileID: 1111126767}
   - component: {fileID: 1111126772}
-  - component: {fileID: 1111126771}
   - component: {fileID: 1111126773}
   - component: {fileID: 1111126774}
+  - component: {fileID: 1111126775}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -653,18 +653,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1111126771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111126766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84b80074bc23ed448842089fb279590f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1111126772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,6 +684,10 @@ MonoBehaviour:
   privacyObj: {fileID: 0}
   acceptButton: {fileID: 0}
   cursor: {fileID: 0}
+  loginButton: {fileID: 0}
+  logoutButton: {fileID: 0}
+  playButton: {fileID: 0}
+  playOfflineButton: {fileID: 0}
 --- !u!114 &1111126774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,6 +702,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 0}
   button: {fileID: 0}
+--- !u!114 &1111126775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111126766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ea2bc4a9a0096438e5cf5c4fb75caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1180543692
 GameObject:
   m_ObjectHideFlags: 0

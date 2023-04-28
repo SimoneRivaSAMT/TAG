@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 180911346}
   - component: {fileID: 180911345}
   - component: {fileID: 180911349}
-  - component: {fileID: 180911350}
+  - component: {fileID: 180911352}
   - component: {fileID: 180911351}
   m_Layer: 5
   m_Name: Canvas
@@ -520,18 +520,6 @@ MonoBehaviour:
   logoutButton: {fileID: 1144878596}
   playButton: {fileID: 1242930451}
   playOfflineButton: {fileID: 616527612}
---- !u!114 &180911350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180911344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84b80074bc23ed448842089fb279590f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &180911351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +530,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 678bed102bd81364f8638faf7c0c3f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &180911352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180911344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ea2bc4a9a0096438e5cf5c4fb75caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &193349652
@@ -2039,7 +2039,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 180911349}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: OfflineGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
