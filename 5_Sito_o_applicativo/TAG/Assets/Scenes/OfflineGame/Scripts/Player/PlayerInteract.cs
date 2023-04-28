@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerInteract : MonoBehaviour
     void Start()
     {
         transform.Find("PlayerUI").Find("PromptText").GetComponent<TextMeshProUGUI>().text = "";
+        transform.Find("PlayerUI").Find("PromptText").Find("Triangle").GetComponent<Image>().enabled = false;
         cam = GetComponent<PlayerLook>().cam;
         inputManager = GetComponent<InputManager>();
     }
@@ -24,8 +26,11 @@ public class PlayerInteract : MonoBehaviour
     void Update()
     {
         // Eliminate the text not looking
-        if(transform.Find("PlayerUI").Find("PromptText").GetComponent<TextMeshProUGUI>().text.Equals("Use Keypad"))
-        transform.Find("PlayerUI").Find("PromptText").GetComponent<TextMeshProUGUI>().text = "";
+        if (transform.Find("PlayerUI").Find("PromptText").GetComponent<TextMeshProUGUI>().text.Contains("Use"))
+        {
+            transform.Find("PlayerUI").Find("PromptText").GetComponent<TextMeshProUGUI>().text = "";
+            transform.Find("PlayerUI").Find("PromptText").Find("Triangle").GetComponent<Image>().enabled = false;
+        }
         // Create a ray at the center of the camera, shooting outwards
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * distance);
@@ -36,6 +41,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
                 transform.Find("PlayerUI").Find("PromptText").GetComponent<TextMeshProUGUI>().text = interactable.promptMessage;
+                transform.Find("PlayerUI").Find("PromptText").Find("Triangle").GetComponent<Image>().enabled = true;
                 if (inputManager.onAction.Interact.triggered)
                 {
                     interactable.BaseInteract();
