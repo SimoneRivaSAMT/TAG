@@ -10,9 +10,9 @@
 ---
 *Finished:*
 - [ ] Multiplayer
-- [ ] UI
-- [ ] AI
-- [ ] Main map
-- [ ] Main game
+- [x] UI
+- [x] AI
+- [ ] Main map (aborted)
+- [x] Main game
 ---
 *Developed by Stefano Ceschi, Simone Riva and Micheal Dobeson*
