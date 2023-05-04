@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     public PlayerInput.UIActions ui;
     public PlayerInput.OnFootActions onFoot;
     public PlayerInput.OnActionActions onAction;
+    public bool HasPlayerGivenStartCommand { get; private set; }
 
     private PlayerMotor motor;
     private PlayerLook look;
@@ -26,17 +27,20 @@ public class InputManager : MonoBehaviour
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
 
-        if (SceneManager.GetActiveScene().buildIndex == (int)SceneToId.offlineGame)
+        if (SceneManager.GetActiveScene().buildIndex == (int)SceneToId.offlineGame
+            || SceneManager.GetActiveScene().buildIndex == (int)SceneToId.onlineGame)
         {
             onFoot.Jump.performed += ctx => motor.Jump();
             onFoot.Crouch.performed += ctx => motor.Crouch();
+            onAction.StartMatch.performed += ctx => FindObjectOfType<NetworkMatchManager>().StartMatch();
         }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(SceneManager.GetActiveScene().buildIndex == (int)SceneToId.offlineGame)
+        if (SceneManager.GetActiveScene().buildIndex == (int)SceneToId.offlineGame
+            || SceneManager.GetActiveScene().buildIndex == (int)SceneToId.onlineGame)
         {
             // Tell the PlayerMotor to move using the value from our movement action
             motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
@@ -45,7 +49,8 @@ public class InputManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (SceneManager.GetActiveScene().buildIndex == (int)SceneToId.offlineGame)
+        if (SceneManager.GetActiveScene().buildIndex == (int)SceneToId.offlineGame
+            || SceneManager.GetActiveScene().buildIndex == (int)SceneToId.onlineGame)
         {
             look.ProcessLook(onFoot.Look.ReadValue<Vector2>(), false);
             look.ProcessLook(onFoot.LookGamepad.ReadValue<Vector2>(), true);

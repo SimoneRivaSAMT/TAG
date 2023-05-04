@@ -856,6 +856,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "StartMatch",
+                    "type": "Button",
+                    "id": "9a711c76-3dd9-4f7c-a813-f93076c8ba75",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -966,6 +975,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ChangeLaser",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dfa19505-1653-48d0-be2b-757d543434e9",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartMatch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e331c885-40f8-4ba4-9c5e-3ac8848d798e",
+                    "path": "<DualShockGamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartMatch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

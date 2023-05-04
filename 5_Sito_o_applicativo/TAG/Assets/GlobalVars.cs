@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class GlobalVars
 {
-    public const string BASE_URL = "localhost:8080/";
+    public const string BASE_URL = "http://192.168.1.131:80/";
 }

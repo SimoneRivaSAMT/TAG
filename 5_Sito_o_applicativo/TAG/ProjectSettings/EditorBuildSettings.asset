@@ -33,8 +33,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu/InScenes/Login/SignUp.unity
     guid: 8207c3c4f66727e488c063298ba71af4
   - enabled: 1
-    path: Assets/Scenes/Game/Scenes/Offline.unity
+    path: Assets/Scenes/OfflineGame/Scenes/Offline.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/OnlineGame/Multiplayer.unity
+    guid: 13d9fb1df9771794caa58772a6af135c
+  - enabled: 1
+    path: Assets/Scenes/MainMenu/InScenes/EndGame/EndGame.unity
+    guid: b0188f5c8ac834e40b7490cbc77c6f76
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a606b1c8e1485b74d919451e09c50614,
       type: 2}

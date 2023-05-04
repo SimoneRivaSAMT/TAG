@@ -3,7 +3,7 @@
 class matchManager
 {
     public function index() : void{
-
+        echo "error in matchManagement!";
     }
 
     public function manageVacant($action) : void{
@@ -32,4 +32,25 @@ class matchManager
             }
         }
     }
+    public function startMatch() : void{
+        require_once "application/models/DatabaseConnection.php";
+        if(isset($_POST['date_played'])){
+            $date = $_POST['date_played'];
+            $date = date_create_from_format("YYYYmd", $date);
+            $conn = DatabaseConnection::getConnection();
+            $query = "INSERT INTO `match` (date_played) VALUES (?)";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("s", $_POST['date_played']);
+            $stmt->execute();
+            $query = "SELECT id FROM `match` ORDER BY id DESC LIMIT 1";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            $stmt->bind_result($id);
+            $stmt->fetch();
+            echo $id;
+        }else{
+            echo "Missing field!";
+        }
+    }
 }
+//todo in unity fare che si aggiorna il db quando faccio o perdo punti

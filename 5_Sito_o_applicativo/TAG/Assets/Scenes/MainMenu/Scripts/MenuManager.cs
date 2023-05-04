@@ -109,7 +109,7 @@ public class MenuManager : MonoBehaviour
 
     public void CreateLobby()
     {
-        SceneManager.LoadScene((int)SceneToId.createLobby);
+        FindObjectOfType<StartGame>().StartAsHost();
     }
 
     public void ViewGuide()

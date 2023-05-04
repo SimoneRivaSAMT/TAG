@@ -878,6 +878,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StartMatch"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a711c76-3dd9-4f7c-a813-f93076c8ba75"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -990,6 +999,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""ChangeLaser"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dfa19505-1653-48d0-be2b-757d543434e9"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartMatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e331c885-40f8-4ba4-9c5e-3ac8848d798e"",
+                    ""path"": ""<DualShockGamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartMatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1024,6 +1055,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_OnAction_Shield = m_OnAction.FindAction("Shield", throwIfNotFound: true);
         m_OnAction_Reload = m_OnAction.FindAction("Reload", throwIfNotFound: true);
         m_OnAction_ChangeLaser = m_OnAction.FindAction("ChangeLaser", throwIfNotFound: true);
+        m_OnAction_StartMatch = m_OnAction.FindAction("StartMatch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1274,6 +1306,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_OnAction_Shield;
     private readonly InputAction m_OnAction_Reload;
     private readonly InputAction m_OnAction_ChangeLaser;
+    private readonly InputAction m_OnAction_StartMatch;
     public struct OnActionActions
     {
         private @PlayerInput m_Wrapper;
@@ -1283,6 +1316,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Shield => m_Wrapper.m_OnAction_Shield;
         public InputAction @Reload => m_Wrapper.m_OnAction_Reload;
         public InputAction @ChangeLaser => m_Wrapper.m_OnAction_ChangeLaser;
+        public InputAction @StartMatch => m_Wrapper.m_OnAction_StartMatch;
         public InputActionMap Get() { return m_Wrapper.m_OnAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1307,6 +1341,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @ChangeLaser.started -= m_Wrapper.m_OnActionActionsCallbackInterface.OnChangeLaser;
                 @ChangeLaser.performed -= m_Wrapper.m_OnActionActionsCallbackInterface.OnChangeLaser;
                 @ChangeLaser.canceled -= m_Wrapper.m_OnActionActionsCallbackInterface.OnChangeLaser;
+                @StartMatch.started -= m_Wrapper.m_OnActionActionsCallbackInterface.OnStartMatch;
+                @StartMatch.performed -= m_Wrapper.m_OnActionActionsCallbackInterface.OnStartMatch;
+                @StartMatch.canceled -= m_Wrapper.m_OnActionActionsCallbackInterface.OnStartMatch;
             }
             m_Wrapper.m_OnActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -1326,6 +1363,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @ChangeLaser.started += instance.OnChangeLaser;
                 @ChangeLaser.performed += instance.OnChangeLaser;
                 @ChangeLaser.canceled += instance.OnChangeLaser;
+                @StartMatch.started += instance.OnStartMatch;
+                @StartMatch.performed += instance.OnStartMatch;
+                @StartMatch.canceled += instance.OnStartMatch;
             }
         }
     }
@@ -1360,5 +1400,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnShield(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
         void OnChangeLaser(InputAction.CallbackContext context);
+        void OnStartMatch(InputAction.CallbackContext context);
     }
 }

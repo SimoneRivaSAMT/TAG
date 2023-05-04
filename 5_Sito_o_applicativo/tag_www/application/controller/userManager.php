@@ -8,10 +8,11 @@ class userManager
 
     public function login() : void{
         require_once "application/models/DatabaseConnection.php";
+        require_once "application/models/DataCleaner.php";
         $conn = DatabaseConnection::getConnection();
         if(isset($_POST['email']) && isset($_POST['password'])){
-            $uname = $_POST['email'];
-            $pw = $_POST['password'];
+            $uname = DataCleaner::cleanEmail($_POST['email']);
+            $pw = DataCleaner::cleanHtmlSpecial($_POST['password']);
             $query = "SELECT id, nickname, email, password FROM user WHERE email = ?";
             $stmt = $conn->prepare($query);
             $stmt->bind_param("s", $uname);

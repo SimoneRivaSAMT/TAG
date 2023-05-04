@@ -15,6 +15,8 @@ namespace Assets.Scenes
         matchHistory = 6,
         signIn = 7,
         signUp = 8,
-        offlineGame = 9
+        offlineGame = 9,
+        onlineGame = 10,
+        gameEnded = 11
     }
 }

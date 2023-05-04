@@ -8,6 +8,6 @@ $final = $actual_link . str_replace($documentRoot, '', $dir);
 define("URL", $final);
 const HOST = "localhost";
 const USERNAME = "root";
-const PASSWORD = "";
+const PASSWORD = "root";
 const DB_NAME = "tag";
 const PORT = 3306;
