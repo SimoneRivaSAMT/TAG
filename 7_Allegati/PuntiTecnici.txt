@@ -1,13 +1,19 @@
-159 (Analisi del problema)  
+159 (Analisi del problema)
+Il o la candidato/a è capace di analizzare il problema?  
 
 125 (Organizzazione del programma)  
+Il programma è stato strutturato in maniera intelligente senza procedure e funzioni e sotto-procedure/funzioni ridondanti?
 
 121 (Ergonomia del software)  
+L'applicazione è facile da usare (user-friendly)? L'ergonomia richiesta dall'utente è implementata?
 
-139 (Realizzazione delle funzioni)  
+139 (Realizzazione delle funzioni)
+Sono realizzate tutte le funzioni richieste?  
 
-166 (Stile di codifica; Leggibilità del codice)  
+166 (Stile di codifica; Leggibilità del codice) 
+Il codice è scritto in modo leggibile, ben organizzato e la nomenclatura è stata scelta opportunamente? 
 
-164 (Codifica: Trattamento degli errori)  
+164 (Codifica: Trattamento degli errori)
+Gestione degli errori: gli eventuali errori sono identificati e gestiti tramite i mezzi adeguati?  
 
 135 (Documentazione DB, tabelle, ecc…)  
