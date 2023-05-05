@@ -16,12 +16,14 @@ public class BackManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Torna indietro di una scena
         if (inputManager.ui.Back.triggered)
         {
             SceneManager.LoadScene(id);
         }
     }
 
+    //Imposta l'id della scena
     public void SetInt(int id)
     {
         this.id = id;

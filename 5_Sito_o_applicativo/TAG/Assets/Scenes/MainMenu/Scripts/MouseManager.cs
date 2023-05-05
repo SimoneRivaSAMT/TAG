@@ -18,11 +18,11 @@ public class MouseManager : MonoBehaviour
 
     public void OnPointerEnter(PointerEventData data)
     {
-       // bg.color = W;
+       
     }
 
     void OnMouseExit()
     {
-        Debug.Log("Il mouse non � pi� su GameObject .");
+        Debug.Log("Il mouse non è più su GameObject .");
     }
 }

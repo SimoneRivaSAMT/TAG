@@ -62,6 +62,7 @@ public class LoginManager : MonoBehaviour
         passw.inputType = TMP_InputField.InputType.Password;
     }
 
+    //Eseguo una richiesta di login
     private IEnumerator LoginRequest()
     {
         UnityWebRequest loginRequest;

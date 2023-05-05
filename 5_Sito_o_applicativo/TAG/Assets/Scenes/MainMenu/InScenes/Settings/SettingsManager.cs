@@ -41,6 +41,7 @@ public class SettingsManager : MonoBehaviour
         defSensY = sensYSlider.value;
     }
 
+    //Salva le impostazioni dell'utente
     public void Save(){
         PlayerPrefs.SetFloat(PlayerPreference.SETTINGS_VOLUME, defVolume);
         PlayerPrefs.SetFloat(PlayerPreference.SETTINGS_SENS_X, defSensX);
@@ -49,6 +50,7 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetInt(PlayerPreference.SETTINGS_DISPLAY, display.value);
     }
 
+    //Imposta i valori di default
     public void DefaultSettings()
     {
         volumeSlider.value = 6;

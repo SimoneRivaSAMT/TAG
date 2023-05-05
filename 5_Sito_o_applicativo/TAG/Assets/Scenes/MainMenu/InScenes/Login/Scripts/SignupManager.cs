@@ -41,6 +41,7 @@ public class SignupManager : MonoBehaviour
         pass.inputType = TMP_InputField.InputType.Password;
     }
 
+    //Verifico se ho già registrato un account
     private IEnumerator InsertUserInDb()
     {
         WWWForm form = new WWWForm();

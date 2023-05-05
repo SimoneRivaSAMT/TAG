@@ -61,6 +61,7 @@ public class GamepadCursor : MonoBehaviour
         CheckLastInput();
     }
 
+    //Controllo se l'ultimo input è del controller o mouse/tastiera
     private void CheckLastInput(){
         if(Gamepad.current != null){
             Cursor.visible = false;
@@ -71,6 +72,7 @@ public class GamepadCursor : MonoBehaviour
         }
     }
 
+    //Imposto il controller come un mouse virtuale
     private void OnEnable()
     {        
         mainCamera = Camera.main;
@@ -106,6 +108,7 @@ public class GamepadCursor : MonoBehaviour
         InputSystem.onAfterUpdate -= UpdateMotion;
     }
 
+    //Aggiorno la posizione del cursore del controller
     private void UpdateMotion()
     {
         if (virtualMouse == null || Gamepad.current == null)
@@ -141,13 +144,11 @@ public class GamepadCursor : MonoBehaviour
             previousMouseState = aButtonIsPressed;
         }
 
-        //Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //transform.position = cursorPos;
-
         AnchorCursor(newPosition);
         status = true;
     }
 
+    //Ancoro il cursore alla posizione data
     private void AnchorCursor(Vector2 position)
     {
         Vector2 anchoredPosition;

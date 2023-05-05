@@ -29,7 +29,6 @@ public class ShowFreeLobbies : MonoBehaviour
     private void CreateTable()
     {
         List<FreeMatch> freeMatches = new List<FreeMatch>();
-        Debug.Log(jsonlobbies);
         if (jsonlobbies.Length > 0)
         {
             foreach (string json in jsonlobbies.Split(';'))
@@ -58,8 +57,6 @@ public class ShowFreeLobbies : MonoBehaviour
         }
         else
         {
-            Debug.LogError("www error! " + www.error.ToString());
-            Debug.LogError("link: " + www.url);
             jsonlobbies = "error";
         }
     }

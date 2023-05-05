@@ -18,7 +18,7 @@ public class CreateManager : MonoBehaviour
     }
     void Update()
     {
-        
+        //Verifico se la stringa è vuota
         if (text.text.Length > 0 && !string.IsNullOrWhiteSpace(text.text))
         {
             button.GetComponent<Button>().enabled = true;
@@ -45,6 +45,7 @@ public class CreateManager : MonoBehaviour
         lobbyName = SanizizeString(text.text);
     }
 
+    //Tolgo dalla stringa i caratteri vietati
     public string SanizizeString(string text)
     {
         text = text.Replace(" ", "_");
