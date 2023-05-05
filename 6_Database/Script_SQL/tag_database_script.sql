@@ -22,8 +22,6 @@ CREATE TABLE `plays`(
 	user_id INT,
     match_id INT,
     score INT DEFAULT -1,
-    times_tagged INT DEFAULT -1,
-    times_tagged_someone INT DEFAULT -1,
     FOREIGN KEY (user_id) REFERENCES `user`(id) ON DELETE SET NULL,
     FOREIGN KEY (match_id) REFERENCES `match`(id) ON DELETE SET NULL
 );

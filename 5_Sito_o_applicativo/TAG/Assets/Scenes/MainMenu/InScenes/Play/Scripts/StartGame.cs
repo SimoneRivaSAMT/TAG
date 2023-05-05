@@ -31,7 +31,7 @@ public class StartGame : MonoBehaviour
 
     public void StartAsClient(string ipAddress = "")
     {
-
+        PlayerPrefs.DeleteKey("connectIp");
         PlayerPrefs.SetString("multiplayerMode", "client");
         PlayerPrefs.SetString("connectIp", ipAddress);
         Debug.Log(ipAddress);
@@ -76,12 +76,12 @@ public class StartGame : MonoBehaviour
         //    StopCoroutine(AddLobbyOnDb());
         //}
         //string myIp = getIp.downloadHandler.text;
-
-        string myIp = GetLocalIPAddress();
+        string ip = GetLocalIPAddress();
         WWWForm form = new WWWForm();
-
+        PlayerPrefs.DeleteKey("connectIp");
+        PlayerPrefs.SetString("connectIp", ip);
         form.AddField("username", PlayerPrefs.GetString(PlayerPreference.USER_UNAME));
-        form.AddField("ip_address", myIp);
+        form.AddField("ip_address", ip);
         form.AddField("user_id", PlayerPrefs.GetInt(PlayerPreference.USER_ID));
         UnityWebRequest www = UnityWebRequest.Post(GlobalVars.BASE_URL + "matchManager/manageVacant/addLobby", form);
         yield return www.SendWebRequest();

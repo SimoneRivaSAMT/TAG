@@ -57,10 +57,12 @@ public class NetworkPlayer : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 

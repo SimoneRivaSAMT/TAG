@@ -11,7 +11,7 @@ public class ServerLife : NetworkBehaviour
 {
     private NetworkVariable<float> timeRemaining;
     public TextMeshPro text;
-    public float matchDurationSeconds = 20;
+    public float matchDurationSeconds = 60;
 
     private void Awake()
     {
