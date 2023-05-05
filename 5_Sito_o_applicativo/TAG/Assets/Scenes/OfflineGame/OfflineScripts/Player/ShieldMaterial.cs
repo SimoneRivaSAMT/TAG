@@ -15,12 +15,6 @@ public class ShieldMaterial : MonoBehaviour
         shield.GetComponent<Renderer>().material = defaultMaterial;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public IEnumerator changeMaterial()
     {
         shield.GetComponent<Renderer>().material = hitMaterial;

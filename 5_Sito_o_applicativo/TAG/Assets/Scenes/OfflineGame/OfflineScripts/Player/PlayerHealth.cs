@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
 {
     private bool wasEliminated;
     private float health;
-    private float lerpTimer;
+    private float lerpTimer; // Timer for health effect
     private float durationTimer; // Timer to check against the duration
     private GameObject parentBar;
     private CameraShake camShake;
@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Health Bar")]
     public float maxHealth = 100f;
-    public float chipSpeed = 2f;
+    public float chipSpeed = 2f; // Speed in which health effect works
     public GameObject healthBarPrefab;
 
     [Header("Damage Overlay")]
@@ -54,20 +54,22 @@ public class PlayerHealth : MonoBehaviour
         if(overlay != null)
             overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
 
-        SpawnHealthBar(-359, 96);
+        SpawnHealthBars(-359, 96);
     }
 
-    private void SpawnHealthBar(float x, float y)
+    private void SpawnHealthBars(float x, float y)
     {
         int num = 0;
         GameObject g = Instantiate(healthBarPrefab, new Vector3(x, y), Quaternion.identity);
         g.transform.SetParent(parentBar.transform);
+        // Main health bar for player
         if (tag == "Player")
         {
             g.name = "HealthBarP";
             g.transform.localPosition = new Vector3(0, 0);
             g.transform.localScale = new Vector3(0.9f, 0.9f);
         }
+        // Smaller health bars for enemies
         else
         {
             while(parentBar.transform.Find("HealthBarE" + num) != null)
@@ -88,10 +90,12 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        // Constantly update health bars
         for (int i = 0; i < players.Count; i++)
         {
             health = Mathf.Clamp(health, 0, maxHealth);
             UpdateHealthUI();
+            // If eliminated despawn and then respawn player
             if (health <= 0)
             {
                 if (gameObject.GetComponent<MeshRenderer>().enabled)
@@ -105,8 +109,10 @@ public class PlayerHealth : MonoBehaviour
             {
                 if (overlay.color.a > 0)
                 {
+                    // Keep overlay when low health
                     if (health < 30)
                         return;
+
                     durationTimer += Time.deltaTime;
                     if (durationTimer > duration)
                     {
@@ -120,6 +126,7 @@ public class PlayerHealth : MonoBehaviour
         }  
     }
 
+    // Creates slow moving health effect and updates health text (visual)
     public void UpdateHealthUI()
     {
         float fillFront = frontHealthBar.fillAmount;
@@ -151,8 +158,11 @@ public class PlayerHealth : MonoBehaviour
     {
         if(!wasEliminated)
             health -= damage;
+
+        // Reset timers
         lerpTimer = 0f;
         durationTimer = 0;
+
         if(overlay != null)
             overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1);
 
@@ -176,6 +186,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (overlay != null)
             overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1);
+
+        // Wait before respawning
         yield return new WaitForSeconds(time);
         health = maxHealth;
         playerManager.RespawnPlayer(gameObject);
@@ -184,6 +196,8 @@ public class PlayerHealth : MonoBehaviour
         wasEliminated = true;
         frontHealthBar.color = Color.blue;
         yield return new WaitForSeconds(time);
+
+        // Return to normal state
         frontHealthBar.color = new Color(0.62f, 0.02f, 1f);
         wasEliminated = false;
         yield break;

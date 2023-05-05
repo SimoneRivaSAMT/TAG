@@ -16,6 +16,7 @@ public class PlayerInteract : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Reset prompt text
         transform.Find("PlayerUI").Find("PromptText").GetComponent<TextMeshProUGUI>().text = "";
         transform.Find("PlayerUI").Find("PromptText").Find("Triangle").GetComponent<Image>().enabled = false;
         cam = GetComponent<PlayerLook>().cam;
@@ -33,15 +34,18 @@ public class PlayerInteract : MonoBehaviour
         }
         // Create a ray at the center of the camera, shooting outwards
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-        Debug.DrawRay(ray.origin, ray.direction * distance);
+        
         RaycastHit hitInfo; // Variable to store our collision information
         if (Physics.Raycast(ray, out hitInfo, distance, mask))
         {
+            // When looking at object display prompt text
             if (hitInfo.collider.GetComponent<Interactable>() != null)
             {
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
                 transform.Find("PlayerUI").Find("PromptText").GetComponent<TextMeshProUGUI>().text = interactable.promptMessage;
                 transform.Find("PlayerUI").Find("PromptText").Find("Triangle").GetComponent<Image>().enabled = true;
+
+                // Do action when interacted with
                 if (inputManager.onAction.Interact.triggered)
                 {
                     interactable.BaseInteract();

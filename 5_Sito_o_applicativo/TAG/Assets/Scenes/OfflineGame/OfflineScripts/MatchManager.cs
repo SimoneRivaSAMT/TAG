@@ -7,12 +7,14 @@ public class MatchManager : MonoBehaviour
 {
     private PlayerManager playerManager;
     private List<GameObject> players; 
+
     // Start is called before the first frame update
     void Start()
     {
         playerManager = new PlayerManager();
         players = playerManager.GetPlayers();
         int i = 0;
+        // Position Players in arena
         foreach(GameObject player in players)
         {
             if(player.tag == "Player")
@@ -21,11 +23,5 @@ public class MatchManager : MonoBehaviour
                 player.transform.position = player.GetComponent<NavMeshAgent>().nextPosition = playerManager.GetRespawnPositions()[i].transform.position;
             i++;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

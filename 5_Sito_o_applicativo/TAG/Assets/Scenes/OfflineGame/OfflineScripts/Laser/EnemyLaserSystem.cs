@@ -22,7 +22,6 @@ public class EnemyLaserSystem : LaserSystem
         NavMeshAgent navMeshAgent = agent.GetComponent<NavMeshAgent>();
         enemy.Agent = navMeshAgent;
         laserEffect = agent.transform.Find("LaserEffect").gameObject;
-        //dualSensePresets = new DualSensePresets(player);
         laserPresets = new LaserPresets(gameObject);
     }
     private void Start()
@@ -72,7 +71,7 @@ public class EnemyLaserSystem : LaserSystem
 
     public override void ChangeWeapon()
     {
-        dualSenseEffectType = (DualSenseEffectType)Random.Range(0, 1);
+        dualSenseEffectType = (DualSenseEffectType)Random.Range(0, 2);
         
         switch ((int)dualSenseEffectType)
         {

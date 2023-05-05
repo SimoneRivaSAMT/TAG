@@ -6,9 +6,9 @@ using UnityEngine.AI;
 
 public class PlayerManager
 {
+    // Create list of all Player and AI Enemies
     public List<GameObject> GetPlayers()
     {
-        // Create list of all Player and AI Enemies
         List<GameObject> players = new List<GameObject>();
         foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
@@ -47,6 +47,7 @@ public class PlayerManager
         }
     }
 
+    // Enable / Disable functionality when eliminated (Enemy)
     public void ChangeEnemyState(GameObject player, bool isEnabled)
     {
         player.GetComponent<MeshRenderer>().enabled = isEnabled;
@@ -55,7 +56,7 @@ public class PlayerManager
         if (isEnabled)
         {
             player.tag = "Enemy";
-            player.transform.position = GetRespawnPosition();
+            player.transform.position = GetRandomRespawnPosition();
         }
         else
         {
@@ -63,6 +64,7 @@ public class PlayerManager
         }
     }
 
+    // Enable / Disable functionality when eliminated (Player)
     public void ChangePlayerState(GameObject player, bool isEnabled)
     {
         player.GetComponent<MeshRenderer>().enabled = isEnabled;
@@ -73,7 +75,7 @@ public class PlayerManager
         {
             player.tag = "Player";
             player.transform.Find("PlayerUI").Find("PromptText").GetComponent<TextMeshProUGUI>().text = "";
-            player.transform.position = GetRespawnPosition();
+            player.transform.position = GetRandomRespawnPosition();
         }
         else
         {
@@ -87,7 +89,7 @@ public class PlayerManager
         return GameObject.FindGameObjectsWithTag("RespawnPoint");
     }
 
-    public Vector3 GetRespawnPosition()
+    public Vector3 GetRandomRespawnPosition()
     {
         GameObject[] respawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         int rnd = Random.Range(0, respawnPoints.Length);
