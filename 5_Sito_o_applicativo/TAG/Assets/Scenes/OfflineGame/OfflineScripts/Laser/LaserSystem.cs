@@ -61,6 +61,7 @@ public abstract class LaserSystem : MonoBehaviour
             // If it's another player/AI deal damage
             if (rayHit.collider.CompareTag("Enemy") || rayHit.collider.CompareTag("Player"))
             {
+                rayHit.collider.GetComponent<PlayerHealth>().TakeDamage(damage);
                 // Display bullet holes effect very briefly
                 DisplayBulletHoleEffect(0.2f);
             }

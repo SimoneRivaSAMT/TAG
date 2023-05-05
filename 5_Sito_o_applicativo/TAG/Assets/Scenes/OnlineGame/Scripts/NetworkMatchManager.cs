@@ -189,7 +189,7 @@ public class NetworkMatchManager : NetworkBehaviour
         int matchid = matchId;
         form.AddField("uid", user_id);
         form.AddField("mid", matchid);
-        req = UnityWebRequest.Post("http://localhost/scoreManager/add/", form);
+        req = UnityWebRequest.Post(GlobalVars.BASE_URL + "scoreManager/add/", form);
         yield return req.SendWebRequest();
         Debug.Log(req.result);
         Debug.Log(req.downloadHandler.text);
@@ -204,7 +204,7 @@ public class NetworkMatchManager : NetworkBehaviour
         WWWForm form = new WWWForm();
         UnityWebRequest req;
         form.AddField("date_played", GetTimestamp(DateTime.Now));
-        req = UnityWebRequest.Post("http://localhost/matchManager/startMatch/", form);
+        req = UnityWebRequest.Post(GlobalVars.BASE_URL + "matchManager/startMatch/", form);
         yield return req.SendWebRequest();
         if (req.result == UnityWebRequest.Result.Success)
         {
@@ -233,7 +233,7 @@ public class NetworkMatchManager : NetworkBehaviour
         form.AddField("match_id", match_id);
         form.AddField("score", score);
         PlayerPrefs.SetInt("last_score", score);
-        req = UnityWebRequest.Post("http://localhost/scoreManager/update", form);
+        req = UnityWebRequest.Post(GlobalVars.BASE_URL + "scoreManager/update", form);
         yield return req.SendWebRequest();
         Debug.LogError(req.downloadHandler.text);
         if (req.result != UnityWebRequest.Result.Success)

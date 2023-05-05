@@ -53,6 +53,18 @@ class userManager
         }
     }
 
+    public static function getUserById($uid){
+        require_once "application/models/DatabaseConnection.php";
+        $conn = DatabaseConnection::getConnection();
+        $query = "SELECT nickname FROM user WHERE id = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("d", $uid);
+        $stmt->execute();
+        $stmt->bind_result($userId);
+        $stmt->fetch();
+        return $userId;
+    }
+
     private function getAllUsers(){
         require_once "application/models/DatabaseConnection.php";
         $conn = DatabaseConnection::getConnection();
@@ -66,4 +78,6 @@ class userManager
         }
         return $userData;
     }
+
+
 }

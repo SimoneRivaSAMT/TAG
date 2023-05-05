@@ -30,7 +30,7 @@ public class NetManager : MonoBehaviour
                 //Setto le impostazioni di rete
                 NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(
                     "0.0.0.0", //dove connettersi. è host, quindi non server. lasciare 0.0.0.0
-                    (ushort)7000, //porta di ascolto
+                    (ushort)6973, //porta di ascolto
                     PlayerPrefs.GetString("connectIp") //indirizzo ip del host. USARE ENUM
                  );
                 Debug.LogError("Host attivo sull'indirizzo " + PlayerPrefs.GetString("connectIp"));
@@ -42,9 +42,9 @@ public class NetManager : MonoBehaviour
                 //Setto le impostazioni di rete
                 NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(
                     PlayerPrefs.GetString("connectIp"), //indirizzo ip del host.-
-                    (ushort)7000 //porta del host
+                    (ushort)6973 //porta del host
                  );
-                Debug.LogError("Client attio sull'indirizzo " + PlayerPrefs.GetString("connectIp"));
+                Debug.LogError("Client attivo sull'indirizzo " + PlayerPrefs.GetString("connectIp"));
                 //Avvio il processo di rete e mi connetto
                 NetworkManager.Singleton.StartClient();
                 break;
@@ -52,7 +52,7 @@ public class NetManager : MonoBehaviour
     }
 
     //serve a ottenere l'indirizzo privato. 
-    //in futuro campbiarlo e ottenere quello pubblic                                
+    //in futuro cambiarlo e ottenere quello pubblic                                
     public static string GetLocalIPAddress()
     {
         foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
