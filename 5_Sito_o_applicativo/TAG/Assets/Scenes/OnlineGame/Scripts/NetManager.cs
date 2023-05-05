@@ -52,7 +52,7 @@ public class NetManager : MonoBehaviour
     }
 
     //serve a ottenere l'indirizzo privato. 
-    //in futuro campbiarlo e ottenere quello pubblic                                
+    //in futuro cambiarlo e ottenere quello pubblic                                
     public static string GetLocalIPAddress()
     {
         foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
