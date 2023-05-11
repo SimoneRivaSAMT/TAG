@@ -9,7 +9,7 @@
 - [x] Main game
 ---
 *Finished:*
-- [ ] Multiplayer
+- [x] Multiplayer
 - [x] UI
 - [x] AI
 - [ ] Main map (aborted)
